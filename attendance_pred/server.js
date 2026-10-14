@@ -626,10 +626,11 @@ const server = http.createServer(async (req, res) => {
   const session = getSession(req, res);
 
   if (pathname.startsWith('/api/')) {
-    const apiRoute = pathname.replace('/api/', '');
+    const rawRoute = pathname.replace('/api/', '');
+    const apiRoute = (rawRoute.endsWith('.php') ? rawRoute.slice(0, -4) : rawRoute).toLowerCase();
 
-    // 0. health.php / server_info.php
-    if (apiRoute === 'health.php' || apiRoute === 'server_info.php') {
+    // 0. health / server_info
+    if (apiRoute === 'health' || apiRoute === 'server_info') {
       const ips = getLocalIpAddresses();
       return json(res, {
         ok: true,
@@ -640,8 +641,8 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    // 1. options.php
-    if (apiRoute === 'options.php') {
+    // 1. options
+    if (apiRoute === 'options') {
       const batches = db.batches.map(b => ({ label: b.name, value: b.name }));
       const courses = [];
       const seenCourseBatch = new Set();
@@ -664,8 +665,8 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    // 2. subjects.php: fetches subjects for the EXACT selected semester and program
-    if (apiRoute === 'subjects.php') {
+    // 2. subjects
+    if (apiRoute === 'subjects') {
       const semesterId = parseInt(query.semester) || 1;
       const normalizedProgram = normalizeCourseName(query.course);
       const batch = String(query.batch || '').trim();
@@ -713,8 +714,8 @@ const server = http.createServer(async (req, res) => {
       return json(res, { ok: true, subjects, savedRows });
     }
 
-    // 3. auth.php
-    if (apiRoute === 'auth.php') {
+    // 3. auth
+    if (apiRoute === 'auth') {
       const action = (query.action || '').toLowerCase();
       if (req.method === 'GET' && action === 'session') {
         const userId = session.userId;
@@ -803,8 +804,8 @@ const server = http.createServer(async (req, res) => {
       return jsonError(res, 'Invalid auth request.');
     }
 
-    // 4. session.php
-    if (apiRoute === 'session.php') {
+    // 4. session
+    if (apiRoute === 'session') {
       const userId = session.userId;
       const user = userId ? db.users.find(u => u.id === userId) : null;
       if (!user) {
@@ -828,8 +829,8 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    // 5. analyze.php
-    if (apiRoute === 'analyze.php') {
+    // 5. analyze
+    if (apiRoute === 'analyze') {
       const body = await parseBody(req);
       const course = String(body.course || '').trim();
       const batch = String(body.batch || '').trim();
@@ -868,8 +869,8 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    // 6. clear_data.php
-    if (apiRoute === 'clear_data.php') {
+    // 6. clear_data
+    if (apiRoute === 'clear_data') {
       const userId = session.userId;
       if (!userId) return jsonError(res, 'Please login first.', 401);
 
@@ -883,8 +884,8 @@ const server = http.createServer(async (req, res) => {
       return json(res, { ok: true, message: 'Saved data cleared successfully.' });
     }
 
-    // 7. faculty_auth.php
-    if (apiRoute === 'faculty_auth.php') {
+    // 7. faculty_auth
+    if (apiRoute === 'faculty_auth') {
       const action = (query.action || '').toLowerCase();
       if (action === 'session') {
         const fId = session.facultyId;
@@ -929,8 +930,8 @@ const server = http.createServer(async (req, res) => {
       return jsonError(res, 'Invalid faculty action.');
     }
 
-    // 8. faculty_data.php
-    if (apiRoute === 'faculty_data.php') {
+    // 8. faculty_data
+    if (apiRoute === 'faculty_data') {
       const action = (query.action || 'options').toLowerCase();
 
       if (action === 'options') {
@@ -1048,8 +1049,8 @@ const server = http.createServer(async (req, res) => {
       return jsonError(res, 'Unsupported action.');
     }
 
-    // 9. faculty_manage.php
-    if (apiRoute === 'faculty_manage.php') {
+    // 9. faculty_manage
+    if (apiRoute === 'faculty_manage') {
       const body = await parseBody(req);
       const action = (body.action || '').toLowerCase();
 
@@ -1146,8 +1147,8 @@ const server = http.createServer(async (req, res) => {
       return jsonError(res, 'Unsupported action.');
     }
 
-    // 10. admin_auth.php
-    if (apiRoute === 'admin_auth.php') {
+    // 10. admin_auth
+    if (apiRoute === 'admin_auth') {
       const action = (query.action || '').toLowerCase();
       if (action === 'session') {
         const adminId = session.adminId;
@@ -1192,8 +1193,8 @@ const server = http.createServer(async (req, res) => {
       return jsonError(res, 'Invalid admin action.');
     }
 
-    // 11. admin_data.php
-    if (apiRoute === 'admin_data.php') {
+    // 11. admin_data
+    if (apiRoute === 'admin_data') {
       const admin = (session.adminId && db.adminUsers.find(a => a.id === session.adminId)) || db.adminUsers[0];
 
       const studentProfiles = db.users.map(u => {
@@ -1234,8 +1235,8 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    // 12. admin_manage.php: Synchronizes all admin modifications site-wide
-    if (apiRoute === 'admin_manage.php') {
+    // 12. admin_manage
+    if (apiRoute === 'admin_manage') {
       const body = await parseBody(req);
       const action = (body.action || '').toLowerCase();
 
