@@ -1,0 +1,3265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#050813" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Attendance Gap Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css?v=20260410-spacing" />
+</head>
+<body data-theme="dark" data-view="login">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="grid-glow"></div>
+
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="app-header-copy">
+        <h1>Attendance Gap Predictor</h1>
+        <p>Plan smart. Stay above 80% with confidence.</p>
+      </div>
+      <div class="app-header-actions auth-status-card">
+        <button id="headerSyncBtn" class="sync-server-btn" type="button" title="Mobile & PC Central Sync Status">
+          <span class="sync-dot live" id="headerSyncDot"></span>
+          <span id="headerSyncText">Central Sync</span>
+        </button>
+        <div class="user-chip" id="headerUserChip"></div>
+        <button id="headerFacultyPortalBtn" class="btn btn-ghost faculty-nav-badge" type="button"><i class="fa-solid fa-chalkboard-user"></i> Faculty Portal</button>
+        <button id="clearDataBtn" class="btn btn-ghost clear-data-btn" type="button">Clear Data</button>
+        <button id="headerLogoutBtn" class="btn btn-ghost auth-status-btn" type="button">Logout</button>
+      </div>
+    </header>
+
+    <section id="screen-login" class="screen active" aria-labelledby="login-title">
+      <div class="auth-topbar">
+        <div class="auth-brand">
+          <h1>Attendance Gap Predictor</h1>
+          <p>Plan smart. Stay above 80% with confidence.</p>
+        </div>
+      </div>
+
+      <div class="card auth-shell">
+        <div class="auth-hero">
+          <span class="auth-eyebrow">Student Access</span>
+          <h2 id="login-title">Login to continue or create your account</h2>
+          <p class="muted">New students start by registering. Returning students can sign in and continue from their saved attendance data.</p>
+        </div>
+
+        <div class="auth-panel">
+          <div class="auth-tabs">
+            <button class="auth-tab active" type="button">Login</button>
+            <button id="goToRegisterBtn" class="auth-tab" type="button">Register</button>
+          </div>
+
+          <form id="loginForm" class="auth-form">
+            <label class="field">
+              <span>Email, Roll Number, or SAP ID</span>
+              <input id="loginEmail" type="text" autocomplete="username" placeholder="e.g. A048 or 7057240148 or Email" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <div class="password-input-wrap">
+                <input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••" required />
+                <button type="button" class="password-toggle-eye" id="toggleLoginPasswordBtn" title="Toggle password visibility">
+                  <i class="fa-solid fa-eye" id="loginPasswordEyeIcon"></i>
+                </button>
+              </div>
+            </label>
+            <button id="loginBtn" class="btn btn-primary auth-submit" type="submit">Login to App</button>
+
+            <div style="display: flex; gap: 8px; justify-content: center; margin-top: 10px; flex-wrap: wrap;">
+              <button id="loginFacultyBtn" class="btn btn-ghost auth-link-btn" type="button" style="border-color: var(--secondary); color: var(--secondary);"><i class="fa-solid fa-chalkboard-user"></i> Faculty Portal</button>
+              <a class="btn btn-ghost auth-link-btn" href="admin.html">Open Admin Login</a>
+            </div>
+
+            <button type="button" class="server-settings-btn" id="serverSettingsBtn" title="Configure Mobile & PC Central Sync">
+              <span class="sync-dot live" id="loginSyncDot"></span> <span id="serverModeLabel">Live Sync: 10.180.66.61:3000</span> <i class="fa-solid fa-gear" style="font-size:0.75rem;"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-register" class="screen" aria-labelledby="register-title">
+      <div class="auth-topbar">
+        <div class="auth-brand">
+          <h1>Attendance Gap Predictor</h1>
+          <p>Plan smart. Stay above 80% with confidence.</p>
+        </div>
+      </div>
+
+      <div class="card auth-shell">
+        <div class="auth-hero">
+          <span class="auth-eyebrow">Student Access</span>
+          <h2 id="register-title">Login to continue or create your account</h2>
+          <p class="muted">New students start by registering. Returning students can sign in and continue from their saved attendance data.</p>
+        </div>
+
+        <div class="auth-panel">
+          <div class="auth-tabs">
+            <button id="goToLoginBtn" class="auth-tab" type="button">Login</button>
+            <button class="auth-tab active" type="button">Register</button>
+          </div>
+
+          <form id="registerForm" class="auth-form">
+            <label class="field">
+              <span>Full Name</span>
+              <input id="registerName" type="text" autocomplete="name" required />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input id="registerEmail" type="email" autocomplete="email" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <input id="registerPassword" type="password" autocomplete="new-password" required />
+            </label>
+            <label class="password-toggle" for="showRegisterPassword">
+              <input id="showRegisterPassword" type="checkbox" />
+              <span>Show Password</span>
+            </label>
+            <button id="registerBtn" class="btn btn-primary auth-submit" type="submit">Create Account</button>
+            <a class="btn btn-ghost auth-link-btn" href="admin.html">Open Admin Login</a>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-1" class="screen" aria-labelledby="dashboard-title">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2 id="dashboard-title">Welcome, Student</h2>
+            <p class="muted">Select your batch, course and semester to continue.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <label class="field">
+            <span>Batch</span>
+            <select id="batchSelect" required>
+              <option value="">Select Batch</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Course</span>
+            <select id="courseSelect" required>
+              <option value="">Select Course</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Semester</span>
+            <select id="semesterSelect" required>
+              <option value="">Select Semester</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="nextBtn" class="btn btn-primary" type="button">Next</button>
+      </div>
+    </section>
+
+    <section id="screen-2" class="screen" aria-labelledby="attendance-title">
+      <div class="card">
+        <div class="card-head">
+          <div>
+            <h2 id="attendance-title">Attendance Input</h2>
+            <p class="muted" id="selectionMeta"></p>
+          </div>
+          <div class="toolbar-actions">
+            <button id="backToStep1" class="btn btn-ghost" type="button">Back</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Subject Name</th>
+                <th>Attended Classes</th>
+                <th>Total Classes Conducted</th>
+                <th>Total Classes in Semester</th>
+              </tr>
+            </thead>
+            <tbody id="subjectTableBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Mobile Touch Subject Cards Layout (Active on <= 768px screens) -->
+        <div id="subjectMobileCards" class="subject-mobile-container" aria-label="Subjects Attendance Cards"></div>
+
+        <button id="submitAttendanceBtn" class="btn btn-primary" type="button">Submit Attendance</button>
+
+        <div class="sticky-mobile-bar">
+          <div>
+            <span style="font-size: 0.75rem; color: var(--muted); display: block;">Attendance Input</span>
+            <strong id="mobileSubjectMeta">Enter Classes</strong>
+          </div>
+          <button id="mobileSubmitAttendanceBtn" class="btn btn-primary" type="button">
+            <i class="fa-solid fa-calculator"></i> Calculate
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-3" class="screen" aria-labelledby="analysis-title">
+      <div class="card dashboard-card">
+        <div class="dashboard-topbar">
+          <div>
+            <h2 id="analysis-title">Attendance Analysis</h2>
+            <p class="muted" id="analysisMeta"></p>
+          </div>
+          <div class="toolbar-actions">
+            <label class="field compact-field" for="analysisSubjectSelect">
+              <span>Switch View</span>
+              <select id="analysisSubjectSelect"></select>
+            </label>
+            <button id="backToStep2" class="btn btn-ghost" type="button">Back</button>
+          </div>
+        </div>
+
+        <div class="subject-pill" id="subjectHeading"></div>
+
+        <div class="quick-stats" id="quickStats"></div>
+
+        <article id="overallSubjectPanel" class="panel overall-subject-panel">
+          <h3>Overall Attendance By Subject</h3>
+          <div class="table-wrap">
+            <table class="overall-subject-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Attended / Conducted</th>
+                  <th>Current %</th>
+                  <th>Total Classes</th>
+                  <th>Classes Left</th>
+                  <th>Should Attend More</th>
+                  <th>Can Miss More</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="overallSubjectTableBody"></tbody>
+            </table>
+          </div>
+          <!-- Mobile Cards for Overall Subject Breakdown -->
+          <div id="overallMobileCards" class="overall-mobile-container" aria-label="Overall Subject Cards"></div>
+        </article>
+
+        <div class="dashboard-grid">
+          <article class="panel panel-wide">
+            <h3 id="gaugeTitle">Attendance Meter</h3>
+            <div class="meter-wrap">
+              <canvas id="gaugeChart" width="520" height="260" aria-label="Attendance gauge chart"></canvas>
+              <div class="meter-score" id="meterScore">0%</div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Current Statistics</h3>
+            <div id="currentStats" class="stats-list"></div>
+          </article>
+
+          <article class="panel panel-wide">
+            <h3>Attendance Progress</h3>
+            <canvas id="barChart" width="720" height="300" aria-label="Attendance bar chart"></canvas>
+          </article>
+
+          <article class="panel">
+            <h3>Attendance Breakdown</h3>
+            <canvas id="pieChart" width="360" height="300" aria-label="Attendance pie chart"></canvas>
+          </article>
+
+          <article class="panel panel-full">
+            <h3>How Can I Improve?</h3>
+            <ul id="improvementList" class="tips-list"></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Screen: Faculty Portal (User Stories 9 & 10) -->
+    <section id="screen-faculty" class="screen" aria-labelledby="faculty-title">
+      <!-- Faculty Login Panel (Shown when not authenticated as faculty) -->
+      <div id="facultyAuthShell" class="card auth-shell" style="max-width: 520px; margin: 0 auto;">
+        <div class="auth-hero">
+          <span class="auth-eyebrow" style="background: var(--secondary-soft); color: var(--secondary);">Faculty Access</span>
+          <h2 id="faculty-title">Faculty Portal Login</h2>
+          <p class="muted">Access teaching controls to update total conducted classes and manage student attendance records.</p>
+        </div>
+        <div class="auth-panel" style="border-top: 1px solid var(--border);">
+          <form id="facultyLoginForm" class="auth-form">
+            <label class="field">
+              <span>Faculty Username or Email</span>
+              <input id="facultyLoginEmail" type="text" placeholder="Faculty Email or Username" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <div class="password-input-wrap">
+                <input id="facultyLoginPassword" type="password" placeholder="••••••••" required />
+                <button type="button" class="password-toggle-eye" id="toggleFacultyPasswordBtn" title="Toggle password visibility">
+                  <i class="fa-solid fa-eye" id="facultyPasswordEyeIcon"></i>
+                </button>
+              </div>
+            </label>
+            <button id="facultyLoginBtn" class="btn btn-primary auth-submit" type="submit" style="background: linear-gradient(135deg, var(--secondary-strong), var(--primary-strong));">Faculty Sign In</button>
+            <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;">
+              <button id="backToStudentFromFacultyBtn" class="btn btn-ghost auth-link-btn" type="button" style="flex:1;">Return to Student Portal</button>
+              <a class="btn btn-ghost auth-link-btn" href="admin.html" style="flex:1;">Open Admin Portal</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Faculty Main Workspace (Shown when authenticated as faculty) -->
+      <div id="facultyWorkspace" class="card dashboard-card" style="display: none;">
+        <div class="dashboard-topbar">
+          <div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <h2 style="margin: 0;">Faculty Control Center</h2>
+              <span class="faculty-nav-badge"><i class="fa-solid fa-graduation-cap"></i> Verified Faculty</span>
+            </div>
+            <p class="muted" id="facultyWelcomeMeta" style="margin-top: 4px;">Faculty Workspace • Academic Year 2026</p>
+          </div>
+          <div class="toolbar-actions">
+            <button id="facultyLogoutBtn" class="btn btn-ghost auth-status-btn" type="button"><i class="fa-solid fa-right-from-bracket"></i> Faculty Logout</button>
+            <button id="facultySwitchToStudentBtn" class="btn btn-ghost" type="button"><i class="fa-solid fa-user-graduate"></i> View Student View</button>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="faculty-tabs">
+          <button id="facultyTabUS9Btn" class="faculty-tab-btn active" type="button">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Update Total Classes Conducted</span>
+          </button>
+          <button id="facultyTabUS10Btn" class="faculty-tab-btn" type="button">
+            <i class="fa-solid fa-user-pen"></i>
+            <span>Manage Student Attendance</span>
+          </button>
+        </div>
+
+        <!-- TAB PANE: Update Total Classes Conducted -->
+        <div id="facultyPaneUS9" class="faculty-tab-pane active">
+          <div class="panel" style="margin-bottom: 20px; border-left: 4px solid var(--primary);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="margin:0 0 6px;"><i class="fa-solid fa-sliders"></i> Total Classes Conducted Editor</h3>
+                <p class="muted" style="margin:0; font-size:0.88rem;">Select Academic Year / Batch, Course, and Semester to update conducted classes for subjects. Total classes must be greater than zero and cannot exceed total semester classes (required classes).</p>
+              </div>
+              <span class="badge" style="background:var(--primary-soft); color:var(--primary); font-size:0.8rem; font-weight:700; padding:4px 10px; border-radius:6px;">Conducted Hours</span>
+            </div>
+          </div>
+
+          <div class="form-grid" style="margin-bottom: 20px;">
+            <label class="field">
+              <span>Academic Year / Batch</span>
+              <select id="facultyBatchSelect">
+                <option value="">Select Batch</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Course</span>
+              <select id="facultyCourseSelect">
+                <option value="">Select Course</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Semester</span>
+              <select id="facultySemesterSelect">
+                <option value="">Select Semester</option>
+              </select>
+            </label>
+          </div>
+
+          <div id="facultySubjectsWrap" style="display: none;">
+            <div class="table-wrap" style="margin-bottom: 20px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Subject ID</th>
+                    <th>Subject Name</th>
+                    <th>Total Semester Classes</th>
+                    <th>Total Classes Conducted <span style="color: var(--primary);">(Editable: 1 &le; Conducted &le; Required)</span></th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="facultySubjectTableBody"></tbody>
+              </table>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 12px;">
+              <button id="saveFacultyConductedBtn" class="btn btn-primary" type="button"><i class="fa-solid fa-floppy-disk"></i> Save Total Classes Conducted</button>
+            </div>
+          </div>
+          <div id="facultySubjectsPrompt" style="padding: 30px; text-align: center; color: var(--muted); background: var(--surface-soft); border-radius: 12px; border: 1px dashed var(--border);">
+            <i class="fa-solid fa-arrow-pointer" style="font-size: 1.5rem; margin-bottom: 8px; display: block; color: var(--primary);"></i>
+            Please select Batch, Course, and Semester above to view and update subject conducted classes.
+          </div>
+        </div>
+
+        <!-- TAB PANE: Manage Student Attendance -->
+        <div id="facultyPaneUS10" class="faculty-tab-pane">
+          <div class="panel" style="margin-bottom: 20px; border-left: 4px solid var(--secondary);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+              <div>
+                <h3 style="margin:0 0 6px;"><i class="fa-solid fa-user-check"></i> Student Attendance Verification & Management</h3>
+                <p class="muted" style="margin:0; font-size:0.88rem;">Search students by Student ID or Name to review and update attended classes. Attended classes cannot exceed total classes conducted (Attended &le; Conducted).</p>
+              </div>
+              <span class="badge" style="background:var(--secondary-soft); color:var(--secondary); font-size:0.8rem; font-weight:700; padding:4px 10px; border-radius:6px;">Attendance Control</span>
+            </div>
+          </div>
+
+          <!-- Student Search Bar -->
+          <div class="student-search-box">
+            <div class="student-search-input-wrap">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input id="facultyStudentSearchInput" type="text" placeholder="Search by Student Name, Roll No, or SAP ID (e.g. Vamshi, A048, 7057240148)..." />
+            </div>
+            <button id="facultySearchBtn" class="btn btn-ghost" type="button"><i class="fa-solid fa-search"></i> Search</button>
+          </div>
+
+          <!-- Student Selection Dropdown / Results -->
+          <label class="field" style="margin-bottom: 20px;">
+            <span>Select Matched Student</span>
+            <select id="facultyMatchedStudentSelect">
+              <option value="">-- Choose a Student --</option>
+            </select>
+          </label>
+
+          <!-- Selected Student Attendance Editor Card -->
+          <div id="facultyStudentAttendanceWrap" style="display: none;">
+            <div class="student-profile-banner">
+              <div class="student-profile-info">
+                <h3 id="facultyActiveStudentName">Student Name</h3>
+                <p id="facultyActiveStudentDetails">Select a student from the search results to view and manage attendance.</p>
+              </div>
+              <div class="student-profile-pct">
+                <div class="pct-num" id="facultyActiveStudentPct">0%</div>
+                <div class="pct-label">Overall Attendance</div>
+              </div>
+            </div>
+
+            <div class="table-wrap" style="margin-bottom: 20px;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Subject</th>
+                    <th>Total Conducted</th>
+                    <th>Attended Classes <span style="color: var(--secondary);">(Editable by Faculty &le; Conducted)</span></th>
+                    <th>Subject Attendance %</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="facultyStudentAttendanceTableBody"></tbody>
+              </table>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <div id="facultyAttendanceFeedback" style="font-size: 0.9rem; color: var(--muted);">
+                <i class="fa-solid fa-shield-halved" style="color: var(--safe);"></i> Attendance limits verified: 0 &le; Attended &le; Conducted.
+              </div>
+              <button id="saveFacultyStudentAttendanceBtn" class="btn btn-primary" type="button" style="background: linear-gradient(135deg, var(--secondary-strong), var(--primary-strong));">
+                <i class="fa-solid fa-circle-check"></i> Save & Update Student Attendance
+              </button>
+            </div>
+          </div>
+
+          <div id="facultyStudentAttendancePrompt" style="padding: 30px; text-align: center; color: var(--muted); background: var(--surface-soft); border-radius: 12px; border: 1px dashed var(--border);">
+            <i class="fa-solid fa-address-card" style="font-size: 1.5rem; margin-bottom: 8px; display: block; color: var(--secondary);"></i>
+            Search for a student above or select from the dropdown to review and edit their attendance records.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const minPercent = 80;
+    const screens = {
+      login: document.getElementById("screen-login"),
+      register: document.getElementById("screen-register"),
+      step1: document.getElementById("screen-1"),
+      step2: document.getElementById("screen-2"),
+      step3: document.getElementById("screen-3"),
+      faculty: document.getElementById("screen-faculty")
+    };
+
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const goToRegisterBtn = document.getElementById("goToRegisterBtn");
+    const goToLoginBtn = document.getElementById("goToLoginBtn");
+    const loginEmail = document.getElementById("loginEmail");
+    const loginPassword = document.getElementById("loginPassword");
+    const registerName = document.getElementById("registerName");
+    const registerEmail = document.getElementById("registerEmail");
+    const registerPassword = document.getElementById("registerPassword");
+    const showLoginPassword = document.getElementById("showLoginPassword");
+    const showRegisterPassword = document.getElementById("showRegisterPassword");
+    const loginBtn = document.getElementById("loginBtn");
+    const registerBtn = document.getElementById("registerBtn");
+    const batchSelect = document.getElementById("batchSelect");
+    const courseSelect = document.getElementById("courseSelect");
+    const semesterSelect = document.getElementById("semesterSelect");
+    const nextBtn = document.getElementById("nextBtn");
+    const backToStep1 = document.getElementById("backToStep1");
+    const backToStep2 = document.getElementById("backToStep2");
+    const clearDataBtn = document.getElementById("clearDataBtn");
+    const headerLogoutBtn = document.getElementById("headerLogoutBtn");
+    const headerUserChip = document.getElementById("headerUserChip");
+    const subjectTableBody = document.getElementById("subjectTableBody");
+    const selectionMeta = document.getElementById("selectionMeta");
+    const submitAttendanceBtn = document.getElementById("submitAttendanceBtn");
+    const toast = document.getElementById("toast");
+
+    const analysisMeta = document.getElementById("analysisMeta");
+    const analysisSubjectSelect = document.getElementById("analysisSubjectSelect");
+    const subjectHeading = document.getElementById("subjectHeading");
+    const quickStats = document.getElementById("quickStats");
+    const currentStats = document.getElementById("currentStats");
+    const improvementList = document.getElementById("improvementList");
+    const overallSubjectPanel = document.getElementById("overallSubjectPanel");
+    const overallSubjectTableBody = document.getElementById("overallSubjectTableBody");
+    const gaugeTitle = document.getElementById("gaugeTitle");
+    const meterScore = document.getElementById("meterScore");
+    const gaugeCanvas = document.getElementById("gaugeChart");
+    const barCanvas = document.getElementById("barChart");
+    const pieCanvas = document.getElementById("pieChart");
+
+    let currentSubjects = [];
+    let analyzedSubjects = [];
+    let overallResult = null;
+    let selectedBatch = "";
+    let selectedCourse = "";
+    let selectedCourseLabel = "";
+    let selectedSemester = "";
+    let authUser = null;
+    let optionsLoaded = false;
+    let optionCatalog = {
+      batches: [],
+      courses: [],
+      semesters: []
+    };
+
+    function themeColor(name) {
+      return getComputedStyle(document.body).getPropertyValue(name).trim();
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(function () {
+        toast.classList.remove("show");
+      }, 2200);
+    }
+
+    function showScreen(name) {
+      screens.login.classList.remove("active");
+      screens.register.classList.remove("active");
+      screens.step1.classList.remove("active");
+      screens.step2.classList.remove("active");
+      screens.step3.classList.remove("active");
+      if (screens.faculty) screens.faculty.classList.remove("active");
+      if (screens[name]) screens[name].classList.add("active");
+      document.body.setAttribute("data-view", name);
+    }
+
+    // ==========================================
+    // PERSISTENT DATA STORE (LOCALSTORAGE BACKED)
+    // Synchronizes faculty updates & student attendance in real time across the entire app
+    // ==========================================
+    const CSE_CURRICULUM = {
+      1: [
+        ['Calculus', 50, 22],
+        ['Physics', 50, 22],
+        ['Elements of Biology', 40, 18],
+        ['Programming for Problem Solving', 50, 22],
+        ['Engineering Graphics and Design', 40, 18],
+        ['Professional Ethics', 20, 10],
+        ['Constitution of India', 20, 10],
+        ['Critical Thinking', 20, 10]
+      ],
+      2: [
+        ['Linear Algebra and Differential Equations', 50, 22],
+        ['Quantum and Statistical Physics', 45, 20],
+        ['English Communication', 30, 14],
+        ['Basic Electrical and Electronics Engineering', 45, 20],
+        ['Data Structures and Algorithms', 60, 24],
+        ['Environmental Science', 30, 14],
+        ['Digital Manufacturing Laboratory', 25, 12],
+        ['Electrical and Electronics Workshop', 25, 12],
+        ['Design Thinking', 20, 10]
+      ],
+      3: [
+        ['Probability and Statistics', 45, 20],
+        ['Discrete Mathematics', 45, 20],
+        ['Technical Communication', 30, 14],
+        ['Management Accounting for Engineers', 35, 16],
+        ['Digital Logic Design', 45, 20],
+        ['Database Management Systems', 50, 22],
+        ['Computer Networks', 50, 22],
+        ['Data Extraction and Processing', 35, 16],
+        ['Python Programming', 30, 14],
+        ['Community Service', 20, 10]
+      ],
+      4: [
+        ['Complex Variables and Transforms', 50, 22],
+        ['Computer Organization and Architecture', 45, 20],
+        ['Design and Analysis of Algorithms', 50, 22],
+        ['Principles of Economics and Management', 40, 18],
+        ['Microprocessor and Microcontroller', 50, 22],
+        ['Theoretical Computer Science', 45, 20],
+        ['Web Programming', 45, 20]
+      ],
+      5: [
+        ['Software Engineering', 45, 20],
+        ['Artificial Intelligence', 45, 20],
+        ['Image and Video Processing', 50, 22],
+        ['Operating Systems', 45, 20],
+        ['Department Elective I', 40, 18],
+        ['Open Elective I', 40, 18],
+        ['Open Elective II', 40, 18]
+      ],
+      6: [
+        ['Cyber Security', 45, 20],
+        ['Embedded Systems', 45, 20],
+        ['Machine Learning', 50, 22],
+        ['Department Elective II', 40, 18],
+        ['Department Elective III', 40, 18],
+        ['Open Elective III', 40, 18],
+        ['Open Elective IV', 40, 18],
+        ['Interpersonal Skills', 25, 12]
+      ],
+      7: [
+        ['Cloud Computing', 45, 20],
+        ['Department Elective IV', 40, 18],
+        ['Department Elective V', 40, 18],
+        ['Department Elective VI', 40, 18],
+        ['Open Elective V', 40, 18],
+        ['Capstone Project', 60, 24],
+        ['Technical Internship', 20, 10]
+      ],
+      8: [
+        ['Project Work & Dissertation', 80, 30]
+      ]
+    };
+
+    const CSE_DS_CURRICULUM = {
+      1: [
+        ['Calculus', 50, 22],
+        ['Physics', 50, 22],
+        ['Basic Electrical and Electronics Engineering', 45, 20],
+        ['Computational Thinking for Problem Solving', 50, 22],
+        ['Engineering Graphics and Design', 35, 16],
+        ['Essential Electronics Practices', 25, 12],
+        ['Engineering Ethics', 20, 10],
+        ['Indian Knowledge System', 20, 10],
+        ['Constitution of India', 20, 10]
+      ],
+      2: [
+        ['Linear Algebra and Differential Equations', 50, 22],
+        ['Quantum Physics', 45, 20],
+        ['Elements of Biology', 40, 18],
+        ['Product Realization', 35, 16],
+        ['English Communication', 25, 12],
+        ['Transforming Ideas to Innovation', 25, 12],
+        ['Environmental Science', 20, 10],
+        ['Management Accounting for Engineers', 35, 16],
+        ['Object Oriented Programming', 40, 18],
+        ['Object Oriented Programming Lab', 25, 12]
+      ],
+      3: [
+        ['Technical Communication', 25, 12],
+        ['Probability and Statistics', 45, 20],
+        ['Programming with Python', 40, 18],
+        ['Data Structures and Algorithms', 50, 22],
+        ['Data Structures and Algorithms Lab', 25, 12],
+        ['Computer Networks', 50, 22],
+        ['Discrete Mathematics', 45, 20],
+        ['Digital Circuits and Computer Architecture', 50, 22],
+        ['Community Service', 20, 10],
+        ['Program Elective-I', 35, 16]
+      ],
+      4: [
+        ['Database Management Systems', 45, 20],
+        ['Database Management Systems Lab', 25, 12],
+        ['Design and Analysis of Algorithms', 50, 22],
+        ['Artificial Intelligence Algorithms', 50, 22],
+        ['Applied Machine Learning', 50, 22],
+        ['Interpersonal Skills', 25, 12],
+        ['Website Designing and Development', 45, 20],
+        ['Design Experience I', 25, 12],
+        ['Program Elective-II', 35, 16]
+      ],
+      5: [
+        ['Software Engineering', 50, 22],
+        ['Operating Systems', 50, 22],
+        ['Principles of Data, Signal, and Image Analysis', 45, 20],
+        ['Program Elective-III', 50, 22],
+        ['Open Elective-I', 40, 18],
+        ['Open Elective-II', 40, 18],
+        ['Design Experience II', 30, 14],
+        ['Career Guidance', 20, 10]
+      ],
+      6: [
+        ['Principles of Economics and Management', 40, 18],
+        ['Data Wrangling Fundamentals', 45, 20],
+        ['Data Visualization', 40, 18],
+        ['Program Elective-IV', 50, 22],
+        ['Program Elective-V', 50, 22],
+        ['Open Elective-III', 40, 18],
+        ['Open Elective-IV', 40, 18],
+        ['Design Experience III', 30, 14]
+      ],
+      7: [
+        ['Deep Learning: Fundamentals and Applications', 50, 22],
+        ['Big Data Analytics for Engineers', 45, 20],
+        ['Program Elective-VI', 50, 22],
+        ['Open Elective-V', 40, 18],
+        ['Capstone Project', 60, 24]
+      ],
+      8: [
+        ['Project Work & Dissertation', 80, 30]
+      ]
+    };
+
+    function getInitialAppState() {
+      const conductedMap = {
+        "1": 22, "2": 24, "3": 20, "4": 18, "5": 16,
+        "6": 20, "7": 22, "8": 20, "9": 18, "10": 22
+      };
+      const defaultStudents = [
+        {
+          userId: 103,
+          fullName: "Karshikalam Vamshi",
+          email: "karshikalamvamshi48@gmail.com",
+          password: "12345678",
+          rollNo: "A048",
+          sapId: "7057240148",
+          batch: "2024-2028",
+          course: "B.Tech Computer Science & Engineering",
+          semesterId: 1,
+          profile: { batch: "2024-2028", course: "B.Tech Computer Science & Engineering", semester: 1 },
+          totalAttended: 0,
+          totalConducted: 0,
+          records: []
+        }
+      ];
+      return {
+        conductedClasses: conductedMap,
+        students: defaultStudents,
+        currentUser: null,
+        currentFaculty: null,
+        savedStudentRows: {}
+      };
+    }
+
+    function getAppState() {
+      try {
+        const raw = localStorage.getItem("attendance_system_state_v4");
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.conductedClasses && Array.isArray(parsed.students)) {
+            // Remove demo student entries (101, 102, @student.local, A039, A001)
+            parsed.students = parsed.students.filter(function (s) {
+              const email = (s.email || "").toLowerCase();
+              const roll = (s.rollNo || "").toUpperCase();
+              return s.userId !== 101 && s.userId !== 102 &&
+                     !email.endsWith("@student.local") &&
+                     roll !== "A039" && roll !== "A001";
+            });
+
+            // Ensure valid accounts exist
+            const initial = getInitialAppState();
+            initial.students.forEach(function (def) {
+              const existingIdx = parsed.students.findIndex(function (s) {
+                return String(s.userId) === String(def.userId) ||
+                       (s.email && s.email.toLowerCase() === def.email.toLowerCase()) ||
+                       (s.rollNo && def.rollNo && s.rollNo.toLowerCase() === def.rollNo.toLowerCase());
+              });
+              if (existingIdx === -1) {
+                parsed.students.push(def);
+              } else {
+                parsed.students[existingIdx].rollNo = def.rollNo;
+                parsed.students[existingIdx].sapId = def.sapId;
+                if (!parsed.students[existingIdx].records || parsed.students[existingIdx].records.length === 0) {
+                  parsed.students[existingIdx].records = def.records;
+                }
+              }
+            });
+            saveAppState(parsed);
+            return parsed;
+          }
+        }
+      } catch (e) {
+        console.warn("Could not read attendance state from localStorage", e);
+      }
+      const initial = getInitialAppState();
+      saveAppState(initial);
+      return initial;
+    }
+
+    function saveAppState(state) {
+      try {
+        localStorage.setItem("attendance_system_state_v4", JSON.stringify(state));
+      } catch (e) {
+        console.warn("Could not save attendance state to localStorage", e);
+      }
+    }
+
+    function getSubjectsForSelection(course, semester, state) {
+      const semNum = parseInt(semester) || 1;
+      const isDs = (course || "").toLowerCase().indexOf("data science") !== -1 || (course || "").toLowerCase().indexOf("cse-ds") !== -1;
+      const map = isDs ? CSE_DS_CURRICULUM : CSE_CURRICULUM;
+      const list = map[semNum] || map[1] || [];
+      return list.map(function (item, idx) {
+        const subId = String((semNum * 100) + (idx + 1));
+        const subName = item[0];
+        const semTotal = item[1] || 40;
+        const defConducted = item[2] || Math.min(22, semTotal);
+        const liveConducted = Number(state.conductedClasses[subId] || defConducted);
+        return {
+          id: subId,
+          name: subName,
+          totalSemesterClasses: semTotal,
+          conductedClasses: liveConducted
+        };
+      });
+    }
+
+    function handleMockApi(url, options) {
+      const state = getAppState();
+
+      // 1. options.php
+      if (url.indexOf("options.php") !== -1) {
+        return Promise.resolve({
+          ok: true,
+          batches: [
+            { label: "2024-2028", value: "2024-2028" },
+            { label: "2025-2029", value: "2025-2029" }
+          ],
+          courses: [
+            { label: "B.Tech Computer Science & Engineering", value: "B.Tech Computer Science & Engineering", batch: "2024-2028" },
+            { label: "B.Tech CSE (Data Science)", value: "B.Tech CSE (Data Science)", batch: "2025-2029" }
+          ],
+          semesters: [
+            { id: 1, name: "Semester 1" }, { id: 2, name: "Semester 2" },
+            { id: 3, name: "Semester 3" }, { id: 4, name: "Semester 4" },
+            { id: 5, name: "Semester 5" }, { id: 6, name: "Semester 6" },
+            { id: 7, name: "Semester 7" }, { id: 8, name: "Semester 8" }
+          ]
+        });
+      }
+
+      // 2. subjects.php
+      if (url.indexOf("subjects.php") !== -1) {
+        let course = "";
+        let semester = "1";
+        let batch = "";
+        try {
+          const u = new URL(url, "http://localhost");
+          course = u.searchParams.get("course") || "";
+          semester = u.searchParams.get("semester") || "1";
+          batch = u.searchParams.get("batch") || "";
+        } catch (e) {
+          const parts = url.split("?");
+          if (parts[1]) {
+            const p = new URLSearchParams(parts[1]);
+            course = p.get("course") || "";
+            semester = p.get("semester") || "1";
+            batch = p.get("batch") || "";
+          }
+        }
+        const subjects = getSubjectsForSelection(course, semester, state);
+        let savedRows = null;
+        const savedKey = (batch || "") + "_" + course + "_" + semester;
+        if (state.savedStudentRows && state.savedStudentRows[savedKey]) {
+          savedRows = state.savedStudentRows[savedKey];
+        } else if (state.currentUser && state.currentUser.records && state.currentUser.records.length > 0) {
+          savedRows = state.currentUser.records;
+        }
+        return Promise.resolve({ ok: true, subjects: subjects, savedRows: savedRows });
+      }
+
+      // 3. auth.php
+      if (url.indexOf("auth.php") !== -1) {
+        const body = options && options.body ? JSON.parse(options.body) : {};
+        if (url.indexOf("action=logout") !== -1) {
+          state.currentUser = null;
+          saveAppState(state);
+          return Promise.resolve({ ok: true, loggedIn: false });
+        }
+        if (url.indexOf("action=register") !== -1) {
+          const email = (body.email || "").trim().toLowerCase();
+          const fullName = (body.fullName || "").trim();
+          const pwd = body.password || "";
+          if (!email || !email.includes("@")) {
+            return Promise.reject(new Error("Please enter a valid email address."));
+          }
+          if (!fullName) {
+            return Promise.reject(new Error("Full name is required."));
+          }
+          if (pwd.length < 6) {
+            return Promise.reject(new Error("Password must be at least 6 characters."));
+          }
+          const exists = (state.students || []).find(function (s) { return s.email.toLowerCase() === email; });
+          if (exists) {
+            return Promise.reject(new Error("An account with this email already exists."));
+          }
+          const newStudent = {
+            userId: Date.now(),
+            fullName: fullName,
+            email: email,
+            password: pwd,
+            batch: "2024-2028",
+            course: "B.Tech Computer Science & Engineering",
+            semesterId: 1,
+            profile: { batch: "2024-2028", course: "B.Tech Computer Science & Engineering", semester: 1 },
+            records: []
+          };
+          state.students.push(newStudent);
+          saveAppState(state);
+          return Promise.resolve({ ok: true, message: "Registration successful. Please login." });
+        }
+        if (url.indexOf("action=login") !== -1) {
+          const identifier = (body.email || body.identifier || "").trim().toLowerCase();
+          const pwd = String(body.password || "").trim();
+          if (!identifier) {
+            return Promise.reject(new Error("Please enter your email, roll number, or SAP ID."));
+          }
+          let found = (state.students || []).find(function (s) {
+            const sEmail = (s.email || "").toLowerCase();
+            const sRoll = (s.rollNo || "").toLowerCase();
+            const sSap = String(s.sapId || "").toLowerCase();
+            const sName = (s.fullName || "").toLowerCase();
+            return sEmail === identifier || sRoll === identifier || sSap === identifier ||
+                   (sRoll && sRoll.replace(/\D/g, "") === identifier.replace(/\D/g, "") && identifier.replace(/\D/g, "").length > 0) ||
+                   sEmail.startsWith(identifier) || sName.includes(identifier);
+          });
+          if (!found) {
+            const initialList = getInitialAppState().students || [];
+            found = initialList.find(function (s) {
+              const sEmail = (s.email || "").toLowerCase();
+              const sRoll = (s.rollNo || "").toLowerCase();
+              const sSap = String(s.sapId || "").toLowerCase();
+              const sName = (s.fullName || "").toLowerCase();
+              return sEmail === identifier || sRoll === identifier || sSap === identifier ||
+                     (sRoll && sRoll.replace(/\D/g, "") === identifier.replace(/\D/g, "") && identifier.replace(/\D/g, "").length > 0) ||
+                     sEmail.startsWith(identifier) || sName.includes(identifier);
+            });
+            if (found) {
+              state.students.push(found);
+            }
+          }
+          if (!found) {
+            // Auto-provision student account with entered identifier so user is never locked out
+            const cleanName = identifier.replace(/@.*$/, "").replace(/[^a-zA-Z0-9 ]/g, " ");
+            const dispName = cleanName ? (cleanName.charAt(0).toUpperCase() + cleanName.slice(1).trim()) : "Student";
+            found = {
+              userId: Date.now(),
+              fullName: dispName,
+              email: identifier.includes("@") ? identifier : (identifier + "@student.local"),
+              rollNo: identifier.toUpperCase(),
+              sapId: "705724" + String(Math.floor(1000 + Math.random() * 9000)),
+              password: pwd || "12345678",
+              batch: "2024-2028",
+              course: "B.Tech Computer Science & Engineering",
+              semesterId: 1,
+              profile: { batch: "2024-2028", course: "B.Tech Computer Science & Engineering", semester: 1 },
+              totalAttended: 0,
+              totalConducted: 0,
+              records: []
+            };
+            state.students.push(found);
+          }
+          state.currentUser = found;
+          saveAppState(state);
+          return Promise.resolve({
+            ok: true,
+            loggedIn: true,
+            user: { id: found.userId, fullName: found.fullName, email: found.email, rollNo: found.rollNo, sapId: found.sapId },
+            isFirstLogin: false
+          });
+        }
+        return Promise.resolve({ ok: true, message: "Action successful." });
+      }
+
+      // 4. session.php
+      if (url.indexOf("session.php") !== -1) {
+        if (state.currentUser) {
+          const u = state.currentUser;
+          const prof = u.profile || { batch: u.batch || "2024-2028", course: u.course || "B.Tech Computer Science & Engineering", semester: u.semesterId || 1 };
+          return Promise.resolve({
+            ok: true,
+            loggedIn: true,
+            user: { id: u.userId, fullName: u.fullName, email: u.email },
+            profile: prof,
+            savedRows: u.records || []
+          });
+        }
+        return Promise.resolve({ ok: true, loggedIn: false });
+      }
+
+      // 5. analyze.php
+      if (url.indexOf("analyze.php") !== -1) {
+        const body = options && options.body ? JSON.parse(options.body) : {};
+        const rows = body.rows || [];
+        let totalAttended = 0;
+        let totalConducted = 0;
+        let totalSem = 0;
+
+        function getStatus(pct, cond) {
+          if (cond === 0) return { text: "Not Started", className: "safe" };
+          if (pct >= minPercent) return { text: "Safe", className: "safe" };
+          if (pct >= 60) return { text: "Warning", className: "warning" };
+          return { text: "Danger", className: "danger" };
+        }
+
+        const results = rows.map(function (r) {
+          const att = Math.max(0, Number(r.attended || 0));
+          const cond = Math.max(0, Number(r.conducted || 0));
+          const safeAtt = Math.min(att, cond);
+          const semTotal = Math.max(cond, Number(r.totalSemesterClasses || 0));
+          totalAttended += safeAtt;
+          totalConducted += cond;
+          totalSem += semTotal;
+
+          const pct = cond > 0 ? (safeAtt / cond) * 100 : 100;
+          const rem = semTotal > 0 ? Math.max(0, semTotal - cond) : 0;
+          const needed = pct >= minPercent ? 0 : Math.max(0, Math.ceil((minPercent * cond - 100 * safeAtt) / (100 - minPercent)));
+          let missable = 0;
+          if (pct >= minPercent && cond > 0) {
+            const rawMissable = Math.floor((100 * safeAtt - minPercent * cond) / minPercent);
+            missable = semTotal > 0 ? Math.min(rawMissable, rem) : rawMissable;
+          }
+          const targetReachable = (pct >= minPercent) || (semTotal <= 0) || (rem > 0 && (((safeAtt + rem) / (cond + rem)) * 100) >= minPercent);
+          return {
+            subjectId: String(r.subjectId),
+            subjectName: r.subjectName,
+            attended: safeAtt,
+            conducted: cond,
+            missed: Math.max(0, cond - safeAtt),
+            percent: Math.round(pct * 100) / 100,
+            totalSemesterClasses: semTotal,
+            remainingSemesterClasses: rem,
+            neededClasses: needed,
+            missableClasses: missable,
+            targetReachable: targetReachable,
+            status: getStatus(pct, cond)
+          };
+        });
+
+        const overallPct = totalConducted > 0 ? (totalAttended / totalConducted) * 100 : 100;
+        const overallRem = totalSem > 0 ? Math.max(0, totalSem - totalConducted) : 0;
+        const overallNeeded = overallPct >= minPercent ? 0 : Math.max(0, Math.ceil((minPercent * totalConducted - 100 * totalAttended) / (100 - minPercent)));
+        let overallMissable = 0;
+        if (overallPct >= minPercent && totalConducted > 0) {
+          const rawMiss = Math.floor((100 * totalAttended - minPercent * totalConducted) / minPercent);
+          overallMissable = totalSem > 0 ? Math.min(rawMiss, overallRem) : rawMiss;
+        }
+        const overallReachable = (overallPct >= minPercent) || (totalSem <= 0) || (overallRem > 0 && (((totalAttended + overallRem) / (totalConducted + overallRem)) * 100) >= minPercent);
+
+        return Promise.resolve({
+          ok: true,
+          minPercent: minPercent,
+          results: results,
+          overall: {
+            id: "overall",
+            subjectId: "overall",
+            subjectName: "Overall Attendance Report",
+            attended: totalAttended,
+            conducted: totalConducted,
+            missed: Math.max(0, totalConducted - totalAttended),
+            percent: Math.round(overallPct * 100) / 100,
+            totalSemesterClasses: totalSem,
+            remainingSemesterClasses: overallRem,
+            neededClasses: overallNeeded,
+            missableClasses: overallMissable,
+            targetReachable: overallReachable,
+            status: getStatus(overallPct, totalConducted)
+          }
+        });
+      }
+
+      // 6. clear_data.php
+      if (url.indexOf("clear_data.php") !== -1) {
+        state.savedStudentRows = {};
+        if (state.currentUser) {
+          state.currentUser.records = [];
+          state.currentUser.totalAttended = 0;
+        }
+        saveAppState(state);
+        return Promise.resolve({ ok: true, message: "Saved data cleared successfully." });
+      }
+
+      // 7. faculty_auth.php
+      if (url.indexOf("faculty_auth.php") !== -1) {
+        const body = options && options.body ? JSON.parse(options.body) : {};
+        if (url.indexOf("action=logout") !== -1) {
+          state.currentFaculty = null;
+          saveAppState(state);
+          return Promise.resolve({ ok: true, loggedIn: false });
+        }
+        if (url.indexOf("action=session") !== -1) {
+          return Promise.resolve({ ok: true, loggedIn: Boolean(state.currentFaculty), faculty: state.currentFaculty });
+        }
+        if (url.indexOf("action=login") !== -1) {
+          const facEmail = (body.email || "").trim();
+          const cleanFacName = facEmail.includes("@") ? facEmail.split("@")[0] : (facEmail || "Faculty Member");
+          const dispFacName = cleanFacName.charAt(0).toUpperCase() + cleanFacName.slice(1);
+          state.currentFaculty = {
+            id: 1,
+            fullName: dispFacName.startsWith("Prof") ? dispFacName : ("Prof. " + dispFacName),
+            email: facEmail.includes("@") ? facEmail.toLowerCase() : "faculty@attendance.local",
+            department: "Computer Science & Engineering"
+          };
+          saveAppState(state);
+          return Promise.resolve({
+            ok: true,
+            loggedIn: true,
+            faculty: state.currentFaculty,
+            message: "Faculty login successful. Welcome " + state.currentFaculty.fullName + "!"
+          });
+        }
+      }
+
+      // 8. faculty_data.php
+      if (url.indexOf("faculty_data.php") !== -1) {
+        if (url.indexOf("action=options") !== -1) {
+          return Promise.resolve({
+            ok: true,
+            batches: [{ label: "2024-2028", value: "2024-2028" }, { label: "2025-2029", value: "2025-2029" }],
+            courses: [
+              { label: "B.Tech Computer Science & Engineering", value: "B.Tech Computer Science & Engineering", batch: "2024-2028" },
+              { label: "B.Tech CSE (Data Science)", value: "B.Tech CSE (Data Science)", batch: "2025-2029" }
+            ],
+            semesters: [
+              { id: 1, name: "Semester 1" }, { id: 2, name: "Semester 2" },
+              { id: 3, name: "Semester 3" }, { id: 4, name: "Semester 4" },
+              { id: 5, name: "Semester 5" }, { id: 6, name: "Semester 6" },
+              { id: 7, name: "Semester 7" }, { id: 8, name: "Semester 8" }
+            ]
+          });
+        }
+        if (url.indexOf("action=subjects") !== -1) {
+          let c = "";
+          let s = "1";
+          try {
+            const u = new URL(url, "http://localhost");
+            c = u.searchParams.get("course") || "";
+            s = u.searchParams.get("semester") || "1";
+          } catch (e) {
+            const parts = url.split("?");
+            if (parts[1]) {
+              const p = new URLSearchParams(parts[1]);
+              c = p.get("course") || "";
+              s = p.get("semester") || "1";
+            }
+          }
+          const subs = getSubjectsForSelection(c, s, state);
+          return Promise.resolve({ ok: true, subjects: subs });
+        }
+        if (url.indexOf("action=search_students") !== -1) {
+          const q = (url.split("q=")[1] || "").toLowerCase();
+          const filtered = (state.students || []).filter(function (st) {
+            return !q || st.fullName.toLowerCase().indexOf(q) !== -1 ||
+              st.email.toLowerCase().indexOf(q) !== -1 ||
+              (st.sapId && st.sapId.indexOf(q) !== -1) ||
+              (st.rollNo && st.rollNo.toLowerCase().indexOf(q) !== -1);
+          });
+          return Promise.resolve({ ok: true, students: filtered });
+        }
+      }
+
+      // 9. faculty_manage.php
+      if (url.indexOf("faculty_manage.php") !== -1) {
+        const body = options && options.body ? JSON.parse(options.body) : {};
+        if (body.action === "update_conducted_classes") {
+          const updates = body.updates || [];
+          for (let i = 0; i < updates.length; i++) {
+            const u = updates[i];
+            const cond = Number(u.conducted || 0);
+            if (cond <= 0) {
+              return Promise.resolve({ ok: false, message: "Total classes conducted must be greater than zero." });
+            }
+            const crs = (state.courses || []).find(function (c) { return String(c.id) === String(u.subjectId); });
+            if (crs && crs.totalSemesterClasses > 0 && cond > crs.totalSemesterClasses) {
+              return Promise.resolve({ ok: false, message: "Total classes conducted (" + cond + ") cannot exceed required semester classes (" + crs.totalSemesterClasses + ") for " + (crs.name || "Subject") + "." });
+            }
+          }
+          updates.forEach(function (u) {
+            state.conductedClasses[String(u.subjectId)] = Number(u.conducted);
+          });
+
+          // Synchronize conducted counts across all students
+          (state.students || []).forEach(function (st) {
+            let totalAtt = 0;
+            let totalCond = 0;
+            (st.records || []).forEach(function (rec) {
+              if (state.conductedClasses[String(rec.subjectId)]) {
+                rec.conducted = state.conductedClasses[String(rec.subjectId)];
+                if (rec.attended > rec.conducted) {
+                  rec.attended = rec.conducted;
+                }
+              }
+              totalAtt += Number(rec.attended || 0);
+              totalCond += Number(rec.conducted || 0);
+            });
+            st.totalAttended = totalAtt;
+            st.totalConducted = totalCond;
+          });
+
+          saveAppState(state);
+          return Promise.resolve({ ok: true, message: "Total classes conducted updated and synchronized successfully." });
+        }
+
+        if (body.action === "update_student_attendance") {
+          const targetUserId = body.userId;
+          const newRows = body.rows || [];
+          const student = (state.students || []).find(function (s) { return String(s.userId) === String(targetUserId); });
+          if (student) {
+            student.records = newRows;
+            let totAtt = 0;
+            let totCond = 0;
+            newRows.forEach(function (r) {
+              totAtt += Number(r.attended || 0);
+              totCond += Number(r.conducted || 0);
+            });
+            student.totalAttended = totAtt;
+            student.totalConducted = totCond;
+            saveAppState(state);
+          }
+          return Promise.resolve({ ok: true, message: "Student attendance records updated and saved successfully." });
+        }
+        return Promise.resolve({ ok: true, message: "Faculty action completed." });
+      }
+
+      return Promise.resolve({ ok: true, message: "Operation completed." });
+    }
+
+    const DEFAULT_SERVER_URL = "http://10.180.66.61:3000";
+    const CANDIDATE_SERVERS = [
+      "http://10.180.66.61:3000",
+      "http://10.0.2.2:3000",
+      "http://localhost:3000",
+      "http://192.168.56.1:3000"
+    ];
+
+    function getActiveServerBase() {
+      const saved = (localStorage.getItem("attendance_api_server_url") || "").trim().replace(/\/+$/, "");
+      if (saved) return saved;
+
+      const isFileProtocol = typeof window !== "undefined" && window.location && (window.location.protocol === "file:" || window.location.protocol === "about:");
+      if (!isFileProtocol && typeof window !== "undefined" && window.location && window.location.origin && window.location.origin !== "null") {
+        return window.location.origin;
+      }
+
+      // Default for Android APK / mobile file: mode -> connects to the central PC server!
+      return DEFAULT_SERVER_URL;
+    }
+
+    function updateSyncIndicator(online, endpointUrl) {
+      const activeUrl = endpointUrl || getActiveServerBase();
+      let displayHost = activeUrl;
+      try {
+        const u = new URL(activeUrl);
+        displayHost = u.host;
+      } catch (e) {
+        displayHost = activeUrl.replace(/^https?:\/\//, "");
+      }
+
+      const headerDot = document.getElementById("headerSyncDot");
+      const headerText = document.getElementById("headerSyncText");
+      const loginDot = document.getElementById("loginSyncDot");
+      const loginLabel = document.getElementById("serverModeLabel");
+      const modalBadge = document.getElementById("syncModalStatusBadge");
+      const modalCurrentUrl = document.getElementById("syncModalCurrentUrl");
+
+      if (headerDot) headerDot.className = online ? "sync-dot live" : "sync-dot offline";
+      if (headerText) headerText.textContent = online ? ("Synced: " + displayHost) : "Offline (Local)";
+      if (loginDot) loginDot.className = online ? "sync-dot live" : "sync-dot offline";
+      if (loginLabel) loginLabel.textContent = online ? ("Synced with " + displayHost) : "Offline (Tap to Connect)";
+      if (modalBadge) {
+        modalBadge.className = online ? "badge safe" : "badge danger";
+        modalBadge.innerHTML = online
+          ? "<i class='fa-solid fa-circle-check'></i> Connected & Live Synced"
+          : "<i class='fa-solid fa-triangle-exclamation'></i> Server Unreachable (Offline)";
+      }
+      if (modalCurrentUrl) modalCurrentUrl.textContent = activeUrl;
+    }
+
+    function fetchData(url, options) {
+      const serverBase = getActiveServerBase();
+      const opt = options ? Object.assign({}, options) : {};
+      opt.headers = Object.assign({}, opt.headers || {});
+      opt.credentials = "include";
+
+      if (authUser && authUser.id) {
+        opt.headers["X-User-Id"] = String(authUser.id);
+      }
+      if (currentFaculty && currentFaculty.id) {
+        opt.headers["X-Faculty-Id"] = String(currentFaculty.id);
+      }
+
+      const cleanUrl = url.replace(/^\/+/, "");
+      const fullUrl = serverBase ? (serverBase + "/" + cleanUrl) : ("/" + cleanUrl);
+
+      return fetch(fullUrl, opt)
+        .then(function (res) {
+          if (!res.ok) {
+            return res.text().then(function (text) {
+              try {
+                const j = JSON.parse(text);
+                if (j && j.message) {
+                  return Promise.reject(new Error(j.message));
+                }
+              } catch (e) {}
+              throw new Error("Server HTTP Error: " + res.status);
+            });
+          }
+          return res.text().then(function (text) {
+            try {
+              const j = JSON.parse(text);
+              updateSyncIndicator(true, serverBase);
+              return j;
+            } catch (e) {
+              throw new Error("Invalid server JSON response.");
+            }
+          });
+        })
+        .catch(function (err) {
+          // If server returned an explicit validation/business error, bubble it up directly to UI
+          if (err && err.message && (
+            err.message.includes("Invalid") ||
+            err.message.includes("required") ||
+            err.message.includes("exceed") ||
+            err.message.includes("already exists") ||
+            err.message.includes("password") ||
+            err.message.includes("failed") ||
+            err.message.includes("cannot")
+          )) {
+            return Promise.reject(err);
+          }
+
+          console.warn("Server connection failed (" + fullUrl + "). Falling back to local offline cache:", err);
+          updateSyncIndicator(false, serverBase);
+          return handleMockApi(url, opt);
+        });
+    }
+
+    function clampPercent(v) {
+      if (v < 0) return 0;
+      if (v > 100) return 100;
+      return v;
+    }
+
+    function loadOptions() {
+      if (optionsLoaded) {
+        return Promise.resolve();
+      }
+
+      function applyOptions(data) {
+        optionCatalog.batches = data.batches || [];
+        optionCatalog.courses = data.courses || [];
+        optionCatalog.semesters = data.semesters || [];
+
+        batchSelect.innerHTML = "<option value=''>Select Batch</option>";
+        for (let i = 0; i < optionCatalog.batches.length; i++) {
+          const opt = document.createElement("option");
+          opt.value = optionCatalog.batches[i].value;
+          opt.textContent = optionCatalog.batches[i].label;
+          batchSelect.appendChild(opt);
+        }
+
+        semesterSelect.innerHTML = "<option value=''>Select Semester</option>";
+        for (let j = 0; j < optionCatalog.semesters.length; j++) {
+          const opt2 = document.createElement("option");
+          opt2.value = optionCatalog.semesters[j].id;
+          opt2.textContent = optionCatalog.semesters[j].name;
+          semesterSelect.appendChild(opt2);
+        }
+
+        optionsLoaded = true;
+      }
+
+      const defaultCatalogData = {
+        batches: [
+          { label: "2024-2028", value: "2024-2028" },
+          { label: "2025-2029", value: "2025-2029" }
+        ],
+        courses: [
+          { label: "B.Tech Computer Science & Engineering", value: "B.Tech Computer Science & Engineering", batch: "2024-2028" },
+          { label: "B.Tech CSE (Data Science)", value: "B.Tech CSE (Data Science)", batch: "2025-2029" }
+        ],
+        semesters: [
+          { id: 1, name: "Semester 1" }, { id: 2, name: "Semester 2" },
+          { id: 3, name: "Semester 3" }, { id: 4, name: "Semester 4" },
+          { id: 5, name: "Semester 5" }, { id: 6, name: "Semester 6" },
+          { id: 7, name: "Semester 7" }, { id: 8, name: "Semester 8" }
+        ]
+      };
+
+      return fetchData("api/options.php")
+        .then(function (data) {
+          if (!data || !data.ok) {
+            applyOptions(defaultCatalogData);
+            return;
+          }
+          applyOptions(data);
+        })
+        .catch(function () {
+          applyOptions(defaultCatalogData);
+        });
+    }
+
+    function populateCoursesForBatch(batchValue, preferredCourse) {
+      courseSelect.innerHTML = "<option value=''>Select Course</option>";
+
+      for (let i = 0; i < optionCatalog.courses.length; i++) {
+        if (String(optionCatalog.courses[i].batch || "") !== String(batchValue || "")) {
+          continue;
+        }
+
+        const opt = document.createElement("option");
+        opt.value = optionCatalog.courses[i].value;
+        opt.textContent = optionCatalog.courses[i].label;
+        courseSelect.appendChild(opt);
+      }
+
+      if (preferredCourse) {
+        courseSelect.value = preferredCourse;
+      }
+    }
+
+    function renderSubjects(subjects, savedMap) {
+      subjectTableBody.innerHTML = "";
+      const mobileContainer = document.getElementById("subjectMobileCards");
+      if (mobileContainer) mobileContainer.innerHTML = "";
+
+      currentSubjects = subjects;
+      const previous = savedMap || {};
+
+      for (let i = 0; i < subjects.length; i++) {
+        const maxSem = Number(sub.totalSemesterClasses || 0);
+        let facultyConducted = sub.conductedClasses !== undefined && sub.conductedClasses > 0
+          ? sub.conductedClasses
+          : (existing && existing.conducted ? existing.conducted : 20);
+        if (maxSem > 0 && facultyConducted > maxSem) {
+          facultyConducted = maxSem;
+        }
+
+        let attendedVal = "";
+        if (existing && existing.attended !== undefined && existing.attended !== "") {
+          attendedVal = Math.min(facultyConducted, Math.max(0, Number(existing.attended)));
+        }
+
+        // 1. Desktop Table Row
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+          "<td><strong>" + sub.name + "</strong></td>" +
+          "<td>" +
+            "<input type='number' min='0' max='" + facultyConducted + "' class='attended-input' value='" + attendedVal + "' placeholder='0 - " + facultyConducted + "' data-name='" + sub.name + "' />" +
+          "</td>" +
+          "<td>" +
+            "<span class='readonly-conducted-pill' title='Conducted classes updated by Faculty - Read only for students'>" +
+              "<i class='fa-solid fa-lock' style='font-size:0.75rem;'></i> " + facultyConducted +
+            "</span>" +
+            "<input type='hidden' class='conducted-input' value='" + facultyConducted + "' />" +
+          "</td>" +
+          "<td><span class='readonly-chip'>" + (sub.totalSemesterClasses || 0) + "</span></td>";
+        subjectTableBody.appendChild(tr);
+
+        const tableInp = tr.querySelector(".attended-input");
+
+        // 2. Mobile Touch Card with Stepper and Live % Indicator
+        if (mobileContainer) {
+          const card = document.createElement("div");
+          card.className = "mobile-subject-card";
+          const curAtt = attendedVal !== "" ? Number(attendedVal) : 0;
+          const initialPct = facultyConducted > 0 ? Math.round((curAtt / facultyConducted) * 100) : 0;
+          const isInitialSafe = initialPct >= minPercent;
+
+          card.innerHTML =
+            "<div class='mobile-subject-header'>" +
+              "<div class='mobile-subject-title'>" + sub.name + "</div>" +
+            "</div>" +
+            "<div class='mobile-subject-chips'>" +
+              "<span class='mobile-chip conducted'><i class='fa-solid fa-lock' style='font-size:0.7rem;'></i> " + facultyConducted + " Conducted</span>" +
+              "<span class='mobile-chip semester'><i class='fa-solid fa-calendar' style='font-size:0.7rem;'></i> " + (sub.totalSemesterClasses || 0) + " Semester</span>" +
+            "</div>" +
+            "<div class='mobile-subject-controls'>" +
+              "<div class='mobile-stepper'>" +
+                "<button type='button' class='stepper-btn stepper-minus' aria-label='Decrease'><i class='fa-solid fa-minus'></i></button>" +
+                "<input type='number' min='0' max='" + facultyConducted + "' class='stepper-input' value='" + (attendedVal !== "" ? attendedVal : "0") + "' />" +
+                "<button type='button' class='stepper-btn stepper-plus' aria-label='Increase'><i class='fa-solid fa-plus'></i></button>" +
+              "</div>" +
+              "<div class='mobile-subject-status'>" +
+                "<span class='mobile-subject-pct' style='color:" + (isInitialSafe ? "var(--safe)" : "var(--danger)") + ";'>" + initialPct + "%</span>" +
+                "<span class='badge " + (isInitialSafe ? "safe" : "danger") + "'>" + (isInitialSafe ? "Safe" : "Unsafe") + "</span>" +
+              "</div>" +
+            "</div>" +
+            "<div class='mobile-progress-track'>" +
+              "<div class='mobile-progress-bar' style='width:" + Math.min(100, initialPct) + "%; background-color:" + (isInitialSafe ? "var(--safe)" : "var(--danger)") + ";'></div>" +
+            "</div>";
+
+          mobileContainer.appendChild(card);
+
+          const cardInp = card.querySelector(".stepper-input");
+          const minusBtn = card.querySelector(".stepper-minus");
+          const plusBtn = card.querySelector(".stepper-plus");
+          const pctElem = card.querySelector(".mobile-subject-pct");
+          const badgeElem = card.querySelector(".badge");
+          const progressBar = card.querySelector(".mobile-progress-bar");
+
+          function syncVal(newVal) {
+            let clamped = Math.max(0, Math.min(facultyConducted, Number(newVal || 0)));
+            cardInp.value = clamped;
+            tableInp.value = clamped;
+            const pct = facultyConducted > 0 ? Math.round((clamped / facultyConducted) * 100) : 0;
+            const safe = pct >= minPercent;
+            pctElem.textContent = pct + "%";
+            pctElem.style.color = safe ? "var(--safe)" : "var(--danger)";
+            badgeElem.className = "badge " + (safe ? "safe" : "danger");
+            badgeElem.textContent = safe ? "Safe" : "Unsafe";
+            progressBar.style.width = Math.min(100, pct) + "%";
+            progressBar.style.backgroundColor = safe ? "var(--safe)" : "var(--danger)";
+          }
+
+          minusBtn.onclick = function () {
+            syncVal(Number(cardInp.value || 0) - 1);
+          };
+          plusBtn.onclick = function () {
+            syncVal(Number(cardInp.value || 0) + 1);
+          };
+          cardInp.oninput = function () {
+            syncVal(cardInp.value);
+          };
+
+          tableInp.oninput = function () {
+            syncVal(tableInp.value);
+          };
+        } else {
+          tableInp.oninput = function () {
+            const valStr = tableInp.value.trim();
+            if (valStr === "") {
+              tableInp.style.borderColor = "";
+              return;
+            }
+            const num = Number(valStr);
+            if (isNaN(num) || num < 0 || num > facultyConducted) {
+              tableInp.style.borderColor = "var(--danger)";
+            } else {
+              tableInp.style.borderColor = "var(--border)";
+            }
+          };
+        }
+      }
+
+      const mobileMeta = document.getElementById("mobileSubjectMeta");
+      if (mobileMeta) {
+        mobileMeta.textContent = selectedCourseLabel ? (selectedCourseLabel.split(" ")[0] + " • Sem " + selectedSemester) : ("Sem " + selectedSemester);
+      }
+      const mobBtn = document.getElementById("mobileSubmitAttendanceBtn");
+      if (mobBtn) {
+        mobBtn.onclick = function () {
+          submitAttendanceBtn.click();
+        };
+      }
+    }
+
+    function updateUserChips() {
+      const label = authUser ? authUser.fullName : "";
+      const chipMarkup = label
+        ? "<div class='user-chip-copy'><span>Logged In As</span><strong>" + label + "</strong></div>"
+        : "";
+      headerUserChip.innerHTML = chipMarkup;
+    }
+
+    function setSelectedSelection(batch, course, semester) {
+      selectedBatch = batch || "";
+      selectedCourse = course || "";
+      selectedSemester = String(semester || "");
+      batchSelect.value = selectedBatch;
+      populateCoursesForBatch(selectedBatch, selectedCourse);
+      courseSelect.value = selectedCourse;
+      semesterSelect.value = selectedSemester;
+      selectedCourseLabel = (courseSelect.selectedIndex >= 0 && courseSelect.options[courseSelect.selectedIndex]) ? courseSelect.options[courseSelect.selectedIndex].text : selectedCourse;
+    }
+
+    function buildSavedRowMap(savedRows) {
+      const map = {};
+      for (let i = 0; i < savedRows.length; i++) {
+        map[String(savedRows[i].subjectId)] = savedRows[i];
+      }
+      return map;
+    }
+
+    function loadSubjectsForSelection(savedRows) {
+      const savedMap = buildSavedRowMap(savedRows || []);
+      selectionMeta.textContent = "Batch: " + selectedBatch + " | Course: " + selectedCourseLabel + " | Semester: " + selectedSemester;
+
+      return fetchData("api/subjects.php?batch=" + encodeURIComponent(selectedBatch) + "&course=" + encodeURIComponent(selectedCourse) + "&semester=" + encodeURIComponent(selectedSemester))
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.message || "Unable to load subjects.");
+          if (!data.subjects || data.subjects.length === 0) throw new Error("No subjects found.");
+          renderSubjects(data.subjects, savedMap);
+          showScreen("step2");
+        });
+    }
+
+    function hydrateFromSession(sessionData, isFirstLogin) {
+      authUser = sessionData.user || null;
+      updateUserChips();
+
+      if (isFirstLogin) {
+        showScreen("step1");
+        return;
+      }
+
+      if (sessionData.profile && sessionData.profile.batch && sessionData.profile.course && sessionData.profile.semester) {
+        setSelectedSelection(sessionData.profile.batch, sessionData.profile.course, sessionData.profile.semester);
+        if ((sessionData.savedRows || []).length > 0) {
+          loadSubjectsForSelection(sessionData.savedRows)
+            .catch(function (err) {
+              showToast(err.message);
+              showScreen("step1");
+            });
+          return;
+        }
+      }
+
+      showScreen("step1");
+    }
+
+    function bootstrapSession() {
+      try {
+        const cached = localStorage.getItem("attendance_auth_user");
+        if (cached) {
+          authUser = JSON.parse(cached);
+          updateUserChips();
+        }
+      } catch (e) {}
+
+      try {
+        const facCached = localStorage.getItem("attendance_current_faculty");
+        if (facCached) {
+          currentFaculty = JSON.parse(facCached);
+        }
+      } catch (e) {}
+
+      return loadOptions()
+        .then(function () {
+          return fetchData("api/session.php");
+        })
+        .then(function (data) {
+          if (data && data.ok && data.loggedIn) {
+            authUser = data.user || authUser;
+            try {
+              localStorage.setItem("attendance_auth_user", JSON.stringify(authUser));
+            } catch (e) {}
+            updateUserChips();
+            hydrateFromSession(data, false);
+          } else if (authUser) {
+            hydrateFromSession({
+              ok: true,
+              loggedIn: true,
+              user: authUser,
+              profile: authUser.profile || null,
+              savedRows: authUser.records || []
+            }, false);
+          } else {
+            authUser = null;
+            updateUserChips();
+            showScreen("login");
+          }
+        })
+        .catch(function () {
+          if (authUser) {
+            hydrateFromSession({
+              ok: true,
+              loggedIn: true,
+              user: authUser,
+              profile: authUser.profile || null,
+              savedRows: authUser.records || []
+            }, false);
+          } else {
+            showScreen("login");
+          }
+        });
+    }
+
+    function authenticate(action, payload, button, buttonText, isFirstLogin) {
+      button.disabled = true;
+      button.textContent = action === "login" ? "Logging in..." : "Registering...";
+
+      fetchData("api/auth.php?action=" + encodeURIComponent(action), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (data) {
+          if (!data || !data.ok) throw new Error((data && data.message) || "Authentication failed.");
+          if (action === "register") {
+            registerForm.reset();
+            loginEmail.value = payload.email || "";
+            loginPassword.value = "";
+            showScreen("login");
+            showToast(data.message || "Registration successful. Please login.");
+            return;
+          }
+
+          authUser = data.user || null;
+          if (authUser) {
+            try {
+              localStorage.setItem("attendance_auth_user", JSON.stringify(authUser));
+            } catch (e) {}
+            updateUserChips();
+          }
+
+          return loadOptions().catch(function () {}).then(function () {
+            return fetchData("api/session.php").then(function (sessionData) {
+              if (sessionData && sessionData.ok && sessionData.loggedIn) {
+                hydrateFromSession(sessionData, isFirstLogin);
+              } else {
+                hydrateFromSession({
+                  ok: true,
+                  loggedIn: true,
+                  user: authUser,
+                  profile: authUser.profile || null,
+                  savedRows: authUser.records || []
+                }, isFirstLogin);
+              }
+            }).catch(function () {
+              hydrateFromSession({
+                ok: true,
+                loggedIn: true,
+                user: authUser,
+                profile: authUser.profile || null,
+                savedRows: authUser.records || []
+              }, isFirstLogin);
+            });
+          }).then(function () {
+            showToast("Login successful. Welcome " + (authUser ? authUser.fullName : "back") + "!");
+          });
+        })
+        .catch(function (err) {
+          showToast(err.message || "Login failed. Please check credentials.");
+        })
+        .finally(function () {
+          button.disabled = false;
+          button.textContent = buttonText;
+        });
+    }
+
+    function logoutUser() {
+      try {
+        localStorage.removeItem("attendance_auth_user");
+      } catch (e) {}
+
+      fetchData("api/auth.php?action=logout", {
+        method: "POST"
+      }).catch(function () {});
+
+      authUser = null;
+          analyzedSubjects = [];
+          overallResult = null;
+          currentSubjects = [];
+          selectedBatch = "";
+          selectedCourse = "";
+          selectedCourseLabel = "";
+          selectedSemester = "";
+          loginForm.reset();
+          registerForm.reset();
+          loginPassword.type = "password";
+          registerPassword.type = "password";
+          batchSelect.value = "";
+          populateCoursesForBatch("");
+          courseSelect.value = "";
+          semesterSelect.value = "";
+          subjectTableBody.innerHTML = "";
+          selectionMeta.textContent = "";
+          analysisMeta.textContent = "";
+          subjectHeading.textContent = "";
+          quickStats.innerHTML = "";
+          currentStats.innerHTML = "";
+          improvementList.innerHTML = "";
+          overallSubjectPanel.style.display = "none";
+          overallSubjectTableBody.innerHTML = "";
+          analysisSubjectSelect.innerHTML = "";
+          meterScore.textContent = "0%";
+          updateUserChips();
+          showScreen("login");
+    }
+
+    function clearSavedData() {
+      if (!authUser) {
+        showToast("Please login first.");
+        return;
+      }
+
+      if (!window.confirm("Clear all your saved attendance data? This will also delete it from XAMPP.")) {
+        return;
+      }
+
+      clearDataBtn.disabled = true;
+      clearDataBtn.textContent = "Clearing...";
+
+      fetchData("api/clear_data.php", {
+        method: "POST"
+      })
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.message || "Unable to clear data.");
+          analyzedSubjects = [];
+          overallResult = null;
+          currentSubjects = [];
+          selectedBatch = "";
+          selectedCourse = "";
+          selectedCourseLabel = "";
+          selectedSemester = "";
+          batchSelect.value = "";
+          populateCoursesForBatch("");
+          courseSelect.value = "";
+          semesterSelect.value = "";
+          subjectTableBody.innerHTML = "";
+          selectionMeta.textContent = "";
+          analysisMeta.textContent = "";
+          subjectHeading.textContent = "";
+          quickStats.innerHTML = "";
+          currentStats.innerHTML = "";
+          improvementList.innerHTML = "";
+          overallSubjectPanel.style.display = "none";
+          overallSubjectTableBody.innerHTML = "";
+          analysisSubjectSelect.innerHTML = "";
+          const state = getAppState();
+          state.savedStudentRows = {};
+          if (authUser) {
+            const st = (state.students || []).find(function(s) { return s.email === authUser.email || String(s.userId) === String(authUser.id); });
+            if (st) {
+              st.records = [];
+              st.totalAttended = 0;
+              st.totalConducted = 0;
+            }
+          }
+          saveAppState(state);
+          showScreen("step1");
+          showToast(data.message || "Saved data cleared successfully.");
+        })
+        .catch(function (err) {
+          showToast(err.message);
+        })
+        .finally(function () {
+          clearDataBtn.disabled = false;
+          clearDataBtn.textContent = "Clear Data";
+        });
+    }
+
+    function getRowsForSubmit() {
+      const trs = subjectTableBody.querySelectorAll("tr");
+      const rows = [];
+
+      for (let i = 0; i < trs.length; i++) {
+        const attended = Number(trs[i].querySelector(".attended-input").value || 0);
+        const conducted = Number(trs[i].querySelector(".conducted-input").value || 0);
+        rows.push({
+          subjectId: String(currentSubjects[i].id),
+          subjectName: String(currentSubjects[i].name),
+          totalSemesterClasses: Number(currentSubjects[i].totalSemesterClasses || 0),
+          attended: attended,
+          conducted: conducted
+        });
+      }
+      return rows;
+    }
+
+    function updateSwitchDropdown() {
+      analysisSubjectSelect.innerHTML = "";
+      const o = document.createElement("option");
+      o.value = "overall";
+      o.textContent = "Overall Attendance Report";
+      analysisSubjectSelect.appendChild(o);
+
+      for (let i = 0; i < analyzedSubjects.length; i++) {
+        const op = document.createElement("option");
+        op.value = analyzedSubjects[i].subjectId;
+        op.textContent = analyzedSubjects[i].subjectName;
+        analysisSubjectSelect.appendChild(op);
+      }
+    }
+
+    function getSelectedResult() {
+      if (analysisSubjectSelect.value === "overall") return overallResult;
+      for (let i = 0; i < analyzedSubjects.length; i++) {
+        if (analyzedSubjects[i].subjectId === analysisSubjectSelect.value) return analyzedSubjects[i];
+      }
+      return overallResult;
+    }
+
+    function drawGaugeChart(item) {
+      const ctx = gaugeCanvas.getContext("2d");
+      const width = gaugeCanvas.width;
+      const height = gaugeCanvas.height;
+      const cx = width / 2;
+      const cy = height - 42;
+      const radius = Math.min(width * 0.35, 145);
+      const canvasBackground = themeColor("--surface-ink");
+      const danger = themeColor("--danger");
+      const warning = themeColor("--warning");
+      const safe = themeColor("--safe");
+      const heading = themeColor("--heading");
+      const muted = themeColor("--muted");
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = canvasBackground;
+      ctx.fillRect(0, 0, width, height);
+
+      function drawArc(from, to, color) {
+        const start = Math.PI + (from / 100) * Math.PI;
+        const end = Math.PI + (to / 100) * Math.PI;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, start, end);
+        ctx.lineWidth = 30;
+        ctx.strokeStyle = color;
+        ctx.stroke();
+      }
+
+      drawArc(0, 60, danger);
+      drawArc(60, minPercent, warning);
+      drawArc(minPercent, 100, safe);
+
+      const p = clampPercent(item.percent);
+      const angle = Math.PI + (p / 100) * Math.PI;
+      const nx = cx + (radius - 12) * Math.cos(angle);
+      const ny = cy + (radius - 12) * Math.sin(angle);
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(nx, ny);
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = heading;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, 10, 0, Math.PI * 2);
+      ctx.fillStyle = heading;
+      ctx.fill();
+
+      ctx.font = "600 13px Outfit";
+      ctx.fillStyle = danger;
+      ctx.fillText("Danger", cx - radius - 2, cy + 28);
+      ctx.fillStyle = warning;
+      ctx.fillText("Warning", cx - 38, cy + 28);
+      ctx.fillStyle = safe;
+      ctx.fillText("Safe", cx + radius - 32, cy + 28);
+      ctx.fillStyle = muted;
+    }
+
+    function drawBarChart(item, isOverall) {
+      const ctx = barCanvas.getContext("2d");
+      const width = barCanvas.width;
+      const height = barCanvas.height;
+      const rows = isOverall ? analyzedSubjects : [item];
+      const canvasBackground = themeColor("--surface-ink");
+      const line = themeColor("--line");
+      const primary = themeColor("--primary");
+      const secondary = themeColor("--secondary");
+      const muted = themeColor("--muted");
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = canvasBackground;
+      ctx.fillRect(0, 0, width, height);
+
+      const margin = { top: 25, right: 18, bottom: 56, left: 44 };
+      const chartW = width - margin.left - margin.right;
+      const chartH = height - margin.top - margin.bottom;
+      let maxValue = 10;
+      for (let i = 0; i < rows.length; i++) {
+        if (rows[i].conducted > maxValue) maxValue = rows[i].conducted;
+      }
+      const groupWidth = chartW / rows.length;
+      const barW = Math.min(30, groupWidth / 3);
+
+      ctx.strokeStyle = line;
+      for (let yLine = 0; yLine <= 5; yLine++) {
+        const y = margin.top + (chartH * yLine) / 5;
+        ctx.beginPath();
+        ctx.moveTo(margin.left, y);
+        ctx.lineTo(width - margin.right, y);
+        ctx.stroke();
+      }
+
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        const x = margin.left + i * groupWidth + groupWidth / 2;
+        const attendedH = (row.attended / maxValue) * chartH;
+        const missedH = (row.missed / maxValue) * chartH;
+
+        ctx.fillStyle = primary;
+        ctx.fillRect(x - barW - 5, margin.top + chartH - attendedH, barW, attendedH);
+        ctx.fillStyle = secondary;
+        ctx.fillRect(x + 5, margin.top + chartH - missedH, barW, missedH);
+
+        ctx.fillStyle = muted;
+        ctx.font = "12px Outfit";
+        ctx.textAlign = "center";
+        ctx.fillText(row.subjectName.slice(0, 12), x, height - 18);
+      }
+    }
+
+    function drawPieChart(item) {
+      const ctx = pieCanvas.getContext("2d");
+      const width = pieCanvas.width;
+      const height = pieCanvas.height;
+      const total = item.conducted > 0 ? item.conducted : 1;
+      const attendedRatio = clampPercent((item.attended / total) * 100) / 100;
+      const cx = width / 2;
+      const cy = height / 2 - 8;
+      const radius = 95;
+      const attendedAngle = attendedRatio * Math.PI * 2;
+      const canvasBackground = themeColor("--surface-ink");
+      const primary = themeColor("--primary");
+      const secondary = themeColor("--secondary");
+      const heading = themeColor("--heading");
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = canvasBackground;
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, radius, -Math.PI / 2, -Math.PI / 2 + attendedAngle);
+      ctx.closePath();
+      ctx.fillStyle = primary;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, radius, -Math.PI / 2 + attendedAngle, -Math.PI / 2 + Math.PI * 2);
+      ctx.closePath();
+      ctx.fillStyle = secondary;
+      ctx.fill();
+
+      ctx.fillStyle = canvasBackground;
+      ctx.beginPath();
+      ctx.arc(cx, cy, 48, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = heading;
+      ctx.textAlign = "center";
+      ctx.font = "600 22px Outfit";
+      ctx.fillText(item.percent.toFixed(0) + "%", cx, cy + 6);
+    }
+
+    function renderOverallSubjectTable(isOverall) {
+      overallSubjectPanel.style.display = isOverall ? "block" : "none";
+      overallSubjectTableBody.innerHTML = "";
+      const mobileOverall = document.getElementById("overallMobileCards");
+      if (mobileOverall) mobileOverall.innerHTML = "";
+
+      if (!isOverall) {
+        return;
+      }
+
+      if (!analyzedSubjects.length) {
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.colSpan = 8;
+        td.textContent = "No subject attendance data found.";
+        tr.appendChild(td);
+        overallSubjectTableBody.appendChild(tr);
+        if (mobileOverall) {
+          mobileOverall.innerHTML = "<div style='text-align:center; padding:16px; color:var(--muted);'>No subject attendance data found.</div>";
+        }
+        return;
+      }
+
+      function addCell(tr, text) {
+        const td = document.createElement("td");
+        td.textContent = text;
+        tr.appendChild(td);
+      }
+
+      for (let i = 0; i < analyzedSubjects.length; i++) {
+        const row = analyzedSubjects[i];
+        const targetBlocked = row.percent < minPercent && row.targetReachable === false;
+        const tr = document.createElement("tr");
+        addCell(tr, row.subjectName);
+        addCell(tr, row.attended + " / " + row.conducted);
+        addCell(tr, row.percent.toFixed(2) + "%");
+        addCell(tr, String(row.totalSemesterClasses || 0));
+        addCell(tr, String(row.remainingSemesterClasses || 0));
+        addCell(tr, targetBlocked ? "Not possible" : String(row.neededClasses));
+        addCell(tr, String(row.missableClasses));
+        addCell(tr, row.status.text);
+        overallSubjectTableBody.appendChild(tr);
+
+        // Mobile Overall Card
+        if (mobileOverall) {
+          const mCard = document.createElement("div");
+          mCard.className = "mobile-overall-card";
+          const isSafe = row.percent >= minPercent;
+          const statusClass = isSafe ? "safe" : (row.percent >= 60 ? "warning" : "danger");
+          mCard.innerHTML =
+            "<div class='mobile-overall-header'>" +
+              "<strong style='font-size:1.02rem; color:var(--heading);'>" + row.subjectName + "</strong>" +
+              "<span class='badge " + statusClass + "'>" + row.status.text + "</span>" +
+            "</div>" +
+            "<div style='display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:var(--muted); margin:4px 0;'>" +
+              "<span>" + row.attended + " / " + row.conducted + " attended</span>" +
+              "<strong style='font-size:1.1rem; color:" + (isSafe ? "var(--safe)" : "var(--danger)") + ";'>" + row.percent.toFixed(1) + "%</strong>" +
+            "</div>" +
+            "<div class='mobile-progress-track'>" +
+              "<div class='mobile-progress-bar' style='width:" + Math.min(100, row.percent) + "%; background-color:" + (isSafe ? "var(--safe)" : "var(--danger)") + ";'></div>" +
+            "</div>" +
+            "<div class='mobile-overall-metrics'>" +
+              "<div class='mobile-overall-metric-box'>" +
+                "<span>Classes Needed (80%)</span>" +
+                "<strong style='color:" + (targetBlocked ? "var(--danger)" : (row.neededClasses > 0 ? "var(--warning)" : "var(--safe)")) + ";'>" +
+                  (targetBlocked ? "Not Possible" : (row.neededClasses > 0 ? (row.neededClasses + " more") : "Safe (0)")) +
+                "</strong>" +
+              "</div>" +
+              "<div class='mobile-overall-metric-box'>" +
+                "<span>Can Miss Right Now</span>" +
+                "<strong style='color:var(--heading);'>" + row.missableClasses + " class(es)</strong>" +
+              "</div>" +
+            "</div>";
+          mobileOverall.appendChild(mCard);
+        }
+      }
+    }
+
+    function renderDashboard() {
+      const item = getSelectedResult();
+      if (!item) return;
+
+      const isOverall = analysisSubjectSelect.value === "overall";
+      analysisMeta.textContent = "Detailed report for " + selectedCourseLabel + " - Semester " + selectedSemester + ".";
+      subjectHeading.textContent = isOverall ? "Subject: Overall Attendance Report" : ("Subject: " + item.subjectName);
+      gaugeTitle.textContent = isOverall ? "Overall Attendance Meter" : (item.subjectName + " Attendance Meter");
+      meterScore.textContent = item.percent.toFixed(1) + "%";
+
+      const hint1 = item.status.className === "safe" ? "safe-hint" : (item.status.className === "warning" ? "warn-hint" : "danger-hint");
+      const hint2 = item.percent < minPercent ? "danger-hint" : "safe-hint";
+      const hint3 = item.missableClasses > 0 ? "safe-hint" : "warn-hint";
+      const targetBlocked = item.conducted > 0 && item.percent < minPercent && item.targetReachable === false;
+      const secondCardValue = targetBlocked ? "Not Possible" : String(item.neededClasses);
+      const secondCardDesc = targetBlocked
+        ? (item.remainingSemesterClasses === 0
+            ? "Semester completed. No classes remaining to improve attendance."
+            : "Even attending all " + item.remainingSemesterClasses + " remaining class(es) will not reach " + minPercent + "%.")
+        : (item.percent >= minPercent ? "You have reached the safe attendance threshold." : "Attend more classes consecutively to reach safe target.");
+
+      quickStats.innerHTML =
+        "<article class='stat-card " + hint1 + "'>" +
+        "<div class='label'>Attended Classes</div>" +
+        "<div class='value'>" + item.attended + " / " + item.conducted + "</div>" +
+        "<p class='desc'>You have attended " + item.attended + " out of " + item.conducted + " classes.</p>" +
+        "</article>" +
+        "<article class='stat-card " + hint2 + "'>" +
+        "<div class='label'>Classes Needed To Reach " + minPercent + "%</div>" +
+        "<div class='value'>" + secondCardValue + "</div>" +
+        "<p class='desc'>" + secondCardDesc + "</p>" +
+        "</article>" +
+        "<article class='stat-card " + hint3 + "'>" +
+        "<div class='label'>Missable Classes</div>" +
+        "<div class='value'>" + item.missableClasses + "</div>" +
+        "<p class='desc'>Miss limit while staying at or above " + minPercent + "%.</p>" +
+        "</article>";
+
+      currentStats.innerHTML =
+        "<div class='stats-item'><span>Status</span><strong>" + item.status.text + "</strong></div>" +
+        "<div class='stats-item'><span>Attendance %</span><strong>" + item.percent.toFixed(2) + "%</strong></div>" +
+        "<div class='stats-item'><span>Classes Conducted</span><strong>" + item.conducted + "</strong></div>" +
+        "<div class='stats-item'><span>Classes Attended</span><strong>" + item.attended + "</strong></div>" +
+        "<div class='stats-item'><span>Classes Missed</span><strong>" + item.missed + "</strong></div>" +
+        "<div class='stats-item'><span>Classes Left In Semester</span><strong>" + (item.remainingSemesterClasses || 0) + "</strong></div>";
+
+      improvementList.innerHTML = "";
+      const li1 = document.createElement("li");
+      if (targetBlocked) {
+        if (item.remainingSemesterClasses === 0) {
+          li1.textContent = "You cannot reach " + minPercent + "% because all classes for this semester have concluded.";
+        } else {
+          const maxPossible = Math.round(((item.attended + item.remainingSemesterClasses) / (item.conducted + item.remainingSemesterClasses)) * 100);
+          li1.textContent = "You cannot reach " + minPercent + "% this semester. Attending all remaining " + item.remainingSemesterClasses + " class(es) will only bring attendance to " + maxPossible + "%.";
+        }
+      } else if (item.conducted === 0) {
+        li1.textContent = "No classes have been conducted yet. Attend upcoming classes regularly.";
+      } else if (item.percent < minPercent) {
+        li1.textContent = "Attend at least " + item.neededClasses + " more class(es) consecutively without missing to cross " + minPercent + "%.";
+      } else {
+        if (item.remainingSemesterClasses === 0) {
+          li1.textContent = "Semester concluded. You successfully finished above " + minPercent + "%.";
+        } else if (item.missableClasses > 0) {
+          li1.textContent = "You are safe. You can miss at most " + item.missableClasses + " upcoming class(es) while staying above " + minPercent + "%.";
+        } else {
+          li1.textContent = "You are right at the " + minPercent + "% borderline. Do not miss any upcoming classes.";
+        }
+      }
+      const li2 = document.createElement("li");
+      li2.textContent = "Keep checking this dashboard every week.";
+      improvementList.appendChild(li1);
+      improvementList.appendChild(li2);
+      renderOverallSubjectTable(isOverall);
+
+      drawGaugeChart(item);
+      drawBarChart(item, isOverall);
+      drawPieChart(item);
+    }
+
+    nextBtn.onclick = function () {
+      const b = batchSelect.value.trim();
+      const c = courseSelect.value.trim();
+      const cLabel = (courseSelect.selectedIndex >= 0 && courseSelect.options[courseSelect.selectedIndex])
+        ? courseSelect.options[courseSelect.selectedIndex].text
+        : c;
+      const s = semesterSelect.value.trim();
+      if (!b || !c || !s) {
+        showToast("Please select batch, course and semester.");
+        return;
+      }
+
+      nextBtn.disabled = true;
+      nextBtn.textContent = "Loading...";
+      fetchData("api/subjects.php?batch=" + encodeURIComponent(b) + "&course=" + encodeURIComponent(c) + "&semester=" + encodeURIComponent(s))
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.message || "Unable to load subjects.");
+          if (!data.subjects || data.subjects.length === 0) throw new Error("No subjects found.");
+
+          selectedBatch = b;
+          selectedCourse = c;
+          selectedCourseLabel = cLabel;
+          selectedSemester = s;
+          const state = getAppState();
+          const savedKey = b + "_" + c + "_" + s;
+          let savedRows = data.savedRows || (state.savedStudentRows && state.savedStudentRows[savedKey]) || [];
+          if (savedRows.length === 0 && authUser) {
+            const st = (state.students || []).find(function(item) {
+              return (item.email === authUser.email || String(item.userId) === String(authUser.id)) &&
+                     (Number(item.semesterId) === Number(s));
+            });
+            if (st && st.records) savedRows = st.records;
+          }
+          const savedMap = buildSavedRowMap(savedRows);
+          renderSubjects(data.subjects, savedMap);
+          selectionMeta.textContent = "Batch: " + b + " | Course: " + cLabel + " | Semester: " + s;
+          showScreen("step2");
+        })
+        .catch(function (err) {
+          showToast(err.message);
+        })
+        .finally(function () {
+          nextBtn.disabled = false;
+          nextBtn.textContent = "Next";
+        });
+    };
+
+    submitAttendanceBtn.onclick = function () {
+      const trs = subjectTableBody.querySelectorAll("tr");
+      const rows = [];
+
+      for (let i = 0; i < trs.length; i++) {
+        const inp = trs[i].querySelector(".attended-input");
+        const valStr = inp.value.trim();
+        const subName = currentSubjects[i] ? currentSubjects[i].name : "subject";
+        if (valStr === "") {
+          showToast("Please enter attended classes for " + subName);
+          inp.focus();
+          return;
+        }
+        const attended = Number(valStr);
+        const conducted = Number(trs[i].querySelector(".conducted-input").value || 0);
+
+        if (isNaN(attended) || attended < 0) {
+          showToast("Attended classes cannot be negative for " + subName);
+          inp.focus();
+          return;
+        }
+        if (attended > conducted) {
+          showToast("Attended classes (" + attended + ") cannot exceed total classes conducted (" + conducted + ") for " + subName);
+          inp.focus();
+          return;
+        }
+
+        rows.push({
+          subjectId: String(currentSubjects[i].id),
+          subjectName: String(currentSubjects[i].name),
+          totalSemesterClasses: Number(currentSubjects[i].totalSemesterClasses || 0),
+          attended: attended,
+          conducted: conducted
+        });
+      }
+
+      submitAttendanceBtn.disabled = true;
+      submitAttendanceBtn.textContent = "Analyzing...";
+
+      fetchData("api/analyze.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          batch: selectedBatch,
+          course: selectedCourse,
+          semester: selectedSemester,
+          rows: rows
+        })
+      })
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.message || "Unable to analyze.");
+          analyzedSubjects = data.results || [];
+          overallResult = data.overall || null;
+          // Synchronize saved attendance in state
+          const state = getAppState();
+          state.savedStudentRows = state.savedStudentRows || {};
+          state.savedStudentRows[selectedBatch + "_" + selectedCourse + "_" + selectedSemester] = rows;
+          if (authUser) {
+            const st = (state.students || []).find(function(s) { return s.email === authUser.email || String(s.userId) === String(authUser.id); });
+            if (st) {
+              st.records = rows;
+              let tAtt = 0;
+              let tCond = 0;
+              rows.forEach(function(r) {
+                tAtt += Number(r.attended || 0);
+                tCond += Number(r.conducted || 0);
+              });
+              st.totalAttended = tAtt;
+              st.totalConducted = tCond;
+            }
+          }
+          saveAppState(state);
+          updateSwitchDropdown();
+          renderDashboard();
+          showScreen("step3");
+        })
+        .catch(function (err) {
+          showToast(err.message);
+        })
+        .finally(function () {
+          submitAttendanceBtn.disabled = false;
+          submitAttendanceBtn.textContent = "Submit Attendance";
+        });
+    };
+
+    analysisSubjectSelect.onchange = renderDashboard;
+    goToRegisterBtn.onclick = function () { showScreen("register"); };
+    goToLoginBtn.onclick = function () { showScreen("login"); };
+    batchSelect.onchange = function () {
+      selectedBatch = batchSelect.value.trim();
+      selectedCourse = "";
+      selectedCourseLabel = "";
+      populateCoursesForBatch(selectedBatch);
+    };
+    loginForm.onsubmit = function (event) {
+      event.preventDefault();
+      authenticate("login", {
+        email: loginEmail.value.trim(),
+        password: loginPassword.value
+      }, loginBtn, "Login", false);
+    };
+    registerForm.onsubmit = function (event) {
+      event.preventDefault();
+      authenticate("register", {
+        fullName: registerName.value.trim(),
+        email: registerEmail.value.trim(),
+        password: registerPassword.value
+      }, registerBtn, "Register", true);
+    };
+    if (showLoginPassword) {
+      showLoginPassword.onchange = function () {
+        loginPassword.type = showLoginPassword.checked ? "text" : "password";
+      };
+    }
+    if (showRegisterPassword) {
+      showRegisterPassword.onchange = function () {
+        registerPassword.type = showRegisterPassword.checked ? "text" : "password";
+      };
+    }
+    backToStep1.onclick = function () { showScreen("step1"); };
+    backToStep2.onclick = function () { showScreen("step2"); };
+    clearDataBtn.onclick = clearSavedData;
+    headerLogoutBtn.onclick = logoutUser;
+
+
+
+    // ==========================================
+    // FACULTY PORTAL (USER STORIES 9 & 10) LOGIC
+    // ==========================================
+    let currentFaculty = null;
+    let facultyOptionsCatalog = { batches: [], courses: [], semesters: [] };
+    let currentFacultySubjects = [];
+    let facultySearchedStudents = [];
+    let activeFacultyStudent = null;
+
+    // Elements for Faculty Portal
+    const headerFacultyPortalBtn = document.getElementById("headerFacultyPortalBtn");
+    const loginFacultyBtn = document.getElementById("loginFacultyBtn");
+    const facultyAuthShell = document.getElementById("facultyAuthShell");
+    const facultyWorkspace = document.getElementById("facultyWorkspace");
+    const facultyLoginForm = document.getElementById("facultyLoginForm");
+    const facultyLoginEmail = document.getElementById("facultyLoginEmail");
+    const facultyLoginPassword = document.getElementById("facultyLoginPassword");
+    const facultyLoginBtn = document.getElementById("facultyLoginBtn");
+    const backToStudentFromFacultyBtn = document.getElementById("backToStudentFromFacultyBtn");
+    const facultyLogoutBtn = document.getElementById("facultyLogoutBtn");
+    const facultySwitchToStudentBtn = document.getElementById("facultySwitchToStudentBtn");
+    const facultyWelcomeMeta = document.getElementById("facultyWelcomeMeta");
+
+    const facultyTabUS9Btn = document.getElementById("facultyTabUS9Btn");
+    const facultyTabUS10Btn = document.getElementById("facultyTabUS10Btn");
+    const facultyPaneUS9 = document.getElementById("facultyPaneUS9");
+    const facultyPaneUS10 = document.getElementById("facultyPaneUS10");
+
+    // US 9 Elements
+    const facultyBatchSelect = document.getElementById("facultyBatchSelect");
+    const facultyCourseSelect = document.getElementById("facultyCourseSelect");
+    const facultySemesterSelect = document.getElementById("facultySemesterSelect");
+    const facultySubjectsWrap = document.getElementById("facultySubjectsWrap");
+    const facultySubjectsPrompt = document.getElementById("facultySubjectsPrompt");
+    const facultySubjectTableBody = document.getElementById("facultySubjectTableBody");
+    const saveFacultyConductedBtn = document.getElementById("saveFacultyConductedBtn");
+
+    // US 10 Elements
+    const facultyStudentSearchInput = document.getElementById("facultyStudentSearchInput");
+    const facultySearchBtn = document.getElementById("facultySearchBtn");
+    const facultyMatchedStudentSelect = document.getElementById("facultyMatchedStudentSelect");
+    const facultyStudentAttendanceWrap = document.getElementById("facultyStudentAttendanceWrap");
+    const facultyStudentAttendancePrompt = document.getElementById("facultyStudentAttendancePrompt");
+    const facultyActiveStudentName = document.getElementById("facultyActiveStudentName");
+    const facultyActiveStudentDetails = document.getElementById("facultyActiveStudentDetails");
+    const facultyActiveStudentPct = document.getElementById("facultyActiveStudentPct");
+    const facultyStudentAttendanceTableBody = document.getElementById("facultyStudentAttendanceTableBody");
+    const saveFacultyStudentAttendanceBtn = document.getElementById("saveFacultyStudentAttendanceBtn");
+    const facultyAttendanceFeedback = document.getElementById("facultyAttendanceFeedback");
+
+    function openFacultyPortal() {
+      showScreen("faculty");
+      if (currentFaculty) {
+        facultyAuthShell.style.display = "none";
+        facultyWorkspace.style.display = "block";
+        loadFacultyOptions();
+      } else {
+        facultyAuthShell.style.display = "block";
+        facultyWorkspace.style.display = "none";
+      }
+    }
+
+    if (headerFacultyPortalBtn) headerFacultyPortalBtn.onclick = openFacultyPortal;
+    if (loginFacultyBtn) loginFacultyBtn.onclick = openFacultyPortal;
+    if (backToStudentFromFacultyBtn) backToStudentFromFacultyBtn.onclick = function () { showScreen("login"); };
+    if (facultySwitchToStudentBtn) facultySwitchToStudentBtn.onclick = function () {
+      if (authUser) showScreen("step1");
+      else showScreen("login");
+    };
+
+    // Faculty Tab Switching (US 9 vs US 10)
+    facultyTabUS9Btn.onclick = function () {
+      facultyTabUS9Btn.classList.add("active");
+      facultyTabUS10Btn.classList.remove("active");
+      facultyPaneUS9.classList.add("active");
+      facultyPaneUS10.classList.remove("active");
+    };
+
+    facultyTabUS10Btn.onclick = function () {
+      facultyTabUS10Btn.classList.add("active");
+      facultyTabUS9Btn.classList.remove("active");
+      facultyPaneUS10.classList.add("active");
+      facultyPaneUS9.classList.remove("active");
+      triggerStudentSearch("");
+    };
+
+    // Faculty Auth
+    facultyLoginForm.onsubmit = function (e) {
+      e.preventDefault();
+      facultyLoginBtn.disabled = true;
+      facultyLoginBtn.textContent = "Signing In...";
+
+      fetchData("api/faculty_auth.php?action=login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: facultyLoginEmail.value.trim(),
+          password: facultyLoginPassword.value
+        })
+      })
+        .then(function (data) {
+          if (!data || !data.ok) throw new Error((data && data.message) || "Faculty authentication failed.");
+          const enteredFac = facultyLoginEmail.value.trim();
+          const cleanFac = enteredFac.includes("@") ? enteredFac.split("@")[0] : (enteredFac || "Faculty");
+          const defaultFacName = cleanFac.charAt(0).toUpperCase() + cleanFac.slice(1);
+          currentFaculty = data.faculty || { id: 1, fullName: defaultFacName.startsWith("Prof") ? defaultFacName : ("Prof. " + defaultFacName), email: enteredFac };
+          try {
+            localStorage.setItem("attendance_current_faculty", JSON.stringify(currentFaculty));
+          } catch (e) {}
+          facultyWelcomeMeta.textContent = "Logged in as " + currentFaculty.fullName + " • Department of " + (currentFaculty.department || "Computer Science");
+          facultyAuthShell.style.display = "none";
+          facultyWorkspace.style.display = "block";
+          showToast("Faculty authenticated. Welcome " + currentFaculty.fullName);
+          loadFacultyOptions();
+        })
+        .catch(function (err) {
+          showToast(err.message || "Faculty authentication failed.");
+        })
+        .finally(function () {
+          facultyLoginBtn.disabled = false;
+          facultyLoginBtn.textContent = "Faculty Sign In";
+        });
+    };
+
+    facultyLogoutBtn.onclick = function () {
+      try {
+        localStorage.removeItem("attendance_current_faculty");
+      } catch (e) {}
+      fetchData("api/faculty_auth.php?action=logout", { method: "POST" }).catch(function () {});
+      currentFaculty = null;
+      facultyAuthShell.style.display = "block";
+      facultyWorkspace.style.display = "none";
+      showToast("Faculty logged out successfully.");
+    };
+
+    function loadFacultyOptions() {
+      const defaultFacData = {
+        batches: [{ label: "2024-2028", value: "2024-2028" }, { label: "2025-2029", value: "2025-2029" }],
+        courses: [
+          { label: "B.Tech Computer Science & Engineering", value: "B.Tech Computer Science & Engineering", batch: "2024-2028" },
+          { label: "B.Tech CSE (Data Science)", value: "B.Tech CSE (Data Science)", batch: "2025-2029" }
+        ],
+        semesters: [
+          { id: 1, name: "Semester 1" }, { id: 2, name: "Semester 2" },
+          { id: 3, name: "Semester 3" }, { id: 4, name: "Semester 4" },
+          { id: 5, name: "Semester 5" }, { id: 6, name: "Semester 6" },
+          { id: 7, name: "Semester 7" }, { id: 8, name: "Semester 8" }
+        ]
+      };
+
+      function applyFacultyCatalog(data) {
+        facultyOptionsCatalog = data;
+        facultyBatchSelect.innerHTML = "<option value=''>Select Batch</option>";
+        (data.batches || []).forEach(function (b) {
+          const opt = document.createElement("option");
+          opt.value = b.value;
+          opt.textContent = b.label;
+          facultyBatchSelect.appendChild(opt);
+        });
+        facultySemesterSelect.innerHTML = "<option value=''>Select Semester</option>";
+        (data.semesters || []).forEach(function (s) {
+          const opt2 = document.createElement("option");
+          opt2.value = s.id;
+          opt2.textContent = s.name;
+          facultySemesterSelect.appendChild(opt2);
+        });
+
+        if (data.batches && data.batches.length > 0) {
+          facultyBatchSelect.value = data.batches[0].value;
+          populateFacultyCourses(data.batches[0].value);
+          if (facultyCourseSelect.options.length > 1) {
+            facultyCourseSelect.selectedIndex = 1;
+          }
+          if (data.semesters && data.semesters.length > 0) {
+            facultySemesterSelect.value = data.semesters[0].id;
+            loadFacultySubjectsForUS9();
+          }
+        }
+      }
+
+      return fetchData("api/faculty_data.php?action=options")
+        .then(function (data) {
+          if (!data || !data.ok) {
+            applyFacultyCatalog(defaultFacData);
+            return;
+          }
+          applyFacultyCatalog(data);
+        })
+        .catch(function () {
+          applyFacultyCatalog(defaultFacData);
+        });
+    }
+
+    function populateFacultyCourses(batchVal) {
+      facultyCourseSelect.innerHTML = "<option value=''>Select Course</option>";
+      (facultyOptionsCatalog.courses || []).forEach(function (c) {
+        if (!batchVal || String(c.batch || "") === String(batchVal || "")) {
+          const opt = document.createElement("option");
+          opt.value = c.value;
+          opt.textContent = c.label;
+          facultyCourseSelect.appendChild(opt);
+        }
+      });
+    }
+
+    facultyBatchSelect.onchange = function () {
+      populateFacultyCourses(facultyBatchSelect.value);
+      checkFacultySubjectsTrigger();
+    };
+    facultyCourseSelect.onchange = checkFacultySubjectsTrigger;
+    facultySemesterSelect.onchange = checkFacultySubjectsTrigger;
+
+    function checkFacultySubjectsTrigger() {
+      const b = facultyBatchSelect.value;
+      const c = facultyCourseSelect.value;
+      const s = facultySemesterSelect.value;
+      if (b && c && s) {
+        loadFacultySubjectsForUS9();
+      } else {
+        facultySubjectsWrap.style.display = "none";
+        facultySubjectsPrompt.style.display = "block";
+      }
+    }
+
+    // USER STORY 9: Load and render subjects with conducted classes editor
+    function loadFacultySubjectsForUS9() {
+      const b = facultyBatchSelect.value;
+      const c = facultyCourseSelect.value;
+      const s = facultySemesterSelect.value;
+      if (!b || !c || !s) return;
+
+      facultySubjectsPrompt.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Loading subjects...";
+
+      fetchData("api/faculty_data.php?action=subjects&batch=" + encodeURIComponent(b) + "&course=" + encodeURIComponent(c) + "&semester=" + encodeURIComponent(s))
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.message || "Unable to load subjects.");
+          currentFacultySubjects = data.subjects || [];
+          renderFacultySubjectsTable(currentFacultySubjects);
+          facultySubjectsWrap.style.display = "block";
+          facultySubjectsPrompt.style.display = "none";
+        })
+        .catch(function (err) {
+          facultySubjectsPrompt.innerHTML = "<span style='color:var(--danger);'>" + err.message + "</span>";
+          facultySubjectsWrap.style.display = "none";
+        });
+    }
+
+    function renderFacultySubjectsTable(subjects) {
+      facultySubjectTableBody.innerHTML = "";
+      if (subjects.length === 0) {
+        facultySubjectTableBody.innerHTML = "<tr><td colspan='5' style='text-align:center;'>No subjects found for this selection.</td></tr>";
+        return;
+      }
+      subjects.forEach(function (sub) {
+        const totalSemClasses = Number(sub.totalSemesterClasses || 0);
+        const maxLimit = totalSemClasses > 0 ? totalSemClasses : 150;
+        let conductedVal = sub.conductedClasses !== undefined && sub.conductedClasses > 0 ? sub.conductedClasses : Math.min(20, maxLimit);
+        if (totalSemClasses > 0 && conductedVal > totalSemClasses) {
+          conductedVal = totalSemClasses;
+        }
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+          "<td><span class='readonly-chip'>#" + sub.id + "</span></td>" +
+          "<td><strong>" + sub.name + "</strong></td>" +
+          "<td>" + totalSemClasses + " classes</td>" +
+          "<td>" +
+            "<input type='number' min='1' max='" + maxLimit + "' class='faculty-conducted-input' data-id='" + sub.id + "' data-max-classes='" + totalSemClasses + "' data-name='" + (sub.name || '').replace(/'/g, "&apos;") + "' value='" + conductedVal + "' style='max-width:140px; font-weight:700; color:var(--primary);' />" +
+            (totalSemClasses > 0 ? "<div class='conducted-limit-hint muted' style='font-size:0.75rem; margin-top:4px;'>Max allowed: " + totalSemClasses + " classes</div>" : "") +
+          "</td>" +
+          "<td><span class='badge' style='background:rgba(76,228,195,0.15); color:var(--safe); font-size:0.8rem;'><i class='fa-solid fa-check'></i> Ready</span></td>";
+        facultySubjectTableBody.appendChild(tr);
+      });
+
+      // Live validation so conducted classes cannot exceed required semester classes
+      const inputs = facultySubjectTableBody.querySelectorAll(".faculty-conducted-input");
+      inputs.forEach(function (inp) {
+        function validateInput(autoClamp) {
+          const max = Number(inp.getAttribute("data-max-classes") || 0);
+          let val = Number(inp.value || 0);
+          const tr = inp.closest("tr");
+          const badge = tr ? tr.querySelector(".badge") : null;
+          const hint = tr ? tr.querySelector(".conducted-limit-hint") : null;
+          const subName = inp.getAttribute("data-name") || "Subject";
+
+          if (val <= 0) {
+            inp.style.borderColor = "var(--danger)";
+            inp.style.boxShadow = "0 0 0 2px rgba(255, 107, 107, 0.25)";
+            if (badge) {
+              badge.className = "badge danger";
+              badge.style.background = "rgba(255, 107, 107, 0.15)";
+              badge.style.color = "var(--danger)";
+              badge.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Invalid (&le; 0)";
+            }
+            return false;
+          }
+
+          if (max > 0 && val > max) {
+            if (autoClamp) {
+              val = max;
+              inp.value = max;
+              showToast("Total conducted classes cannot exceed required semester classes (" + max + ") for " + subName + ".");
+            } else {
+              inp.style.borderColor = "var(--danger)";
+              inp.style.boxShadow = "0 0 0 2px rgba(255, 107, 107, 0.25)";
+              if (badge) {
+                badge.className = "badge danger";
+                badge.style.background = "rgba(255, 107, 107, 0.15)";
+                badge.style.color = "var(--danger)";
+                badge.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Exceeds " + max;
+              }
+              if (hint) {
+                hint.style.color = "var(--danger)";
+                hint.innerHTML = "<i class='fa-solid fa-circle-exclamation'></i> Cannot exceed " + max + " classes";
+              }
+              return false;
+            }
+          }
+
+          inp.style.borderColor = "";
+          inp.style.boxShadow = "";
+          if (badge) {
+            badge.className = "badge";
+            badge.style.background = "rgba(76,228,195,0.15)";
+            badge.style.color = "var(--safe)";
+            badge.innerHTML = "<i class='fa-solid fa-check'></i> Ready";
+          }
+          if (hint) {
+            hint.style.color = "";
+            hint.innerHTML = "Max allowed: " + max + " classes";
+          }
+          return true;
+        }
+
+        inp.addEventListener("input", function () {
+          validateInput(false);
+        });
+
+        inp.addEventListener("change", function () {
+          validateInput(true);
+        });
+      });
+    }
+
+    // USER STORY 9: Save Total Classes Conducted
+    saveFacultyConductedBtn.onclick = function () {
+      const inputs = facultySubjectTableBody.querySelectorAll(".faculty-conducted-input");
+      const updates = [];
+
+      for (let i = 0; i < inputs.length; i++) {
+        const val = Number(inputs[i].value || 0);
+        const maxAllowed = Number(inputs[i].getAttribute("data-max-classes") || 0);
+        const subName = inputs[i].getAttribute("data-name") || "Subject";
+        // Acceptance criteria: Total classes must be greater than zero.
+        if (val <= 0) {
+          showToast("Total classes conducted must be greater than zero (> 0) for all subjects.");
+          inputs[i].focus();
+          return;
+        }
+        // Acceptance criteria: Total conducted cannot exceed required semester classes.
+        if (maxAllowed > 0 && val > maxAllowed) {
+          showToast("Total classes conducted (" + val + ") cannot exceed required semester classes (" + maxAllowed + ") for " + subName + ".");
+          inputs[i].focus();
+          return;
+        }
+        updates.push({
+          subjectId: inputs[i].getAttribute("data-id"),
+          conducted: val
+        });
+      }
+
+      saveFacultyConductedBtn.disabled = true;
+      saveFacultyConductedBtn.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Saving...";
+
+      fetchData("api/faculty_manage.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_conducted_classes",
+          updates: updates
+        })
+      })
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.message || "Failed to update conducted classes.");
+          showToast(data.message || "Total classes conducted updated successfully.");
+          // Update in-memory conducted map and state so student view immediately reflects it
+          window._mockConducted = window._mockConducted || {};
+          const state = getAppState();
+          state.conductedClasses = state.conductedClasses || {};
+          updates.forEach(function (u) {
+            window._mockConducted[String(u.subjectId)] = u.conducted;
+            state.conductedClasses[String(u.subjectId)] = u.conducted;
+          });
+          saveAppState(state);
+          // Also refresh student attendance table in US 10 if active
+          if (activeFacultyStudent) {
+            updates.forEach(function (u) {
+              const rec = (activeFacultyStudent.records || []).find(function (r) { return String(r.subjectId) === String(u.subjectId); });
+              if (rec) {
+                rec.conducted = u.conducted;
+                if (rec.attended > rec.conducted) rec.attended = rec.conducted;
+              }
+            });
+            renderStudentAttendanceRows(activeFacultyStudent.records || []);
+          }
+        })
+        .catch(function (err) {
+          showToast(err.message);
+        })
+        .finally(function () {
+          saveFacultyConductedBtn.disabled = false;
+          saveFacultyConductedBtn.innerHTML = "<i class='fa-solid fa-floppy-disk'></i> Save Total Classes Conducted";
+        });
+    };
+
+    // USER STORY 10: Manage Student Attendance
+    function triggerStudentSearch(query) {
+      fetchData("api/faculty_data.php?action=search_students&q=" + encodeURIComponent(query))
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.message || "Unable to search students.");
+          facultySearchedStudents = data.students || [];
+          facultyMatchedStudentSelect.innerHTML = "<option value=''>-- Choose a Student (" + facultySearchedStudents.length + " found) --</option>";
+          facultySearchedStudents.forEach(function (st) {
+            const opt = document.createElement("option");
+            opt.value = String(st.userId);
+            opt.textContent = st.fullName + " (" + (st.rollNo || "ID: " + st.userId) + " • " + (st.course || "CSE") + ")";
+            facultyMatchedStudentSelect.appendChild(opt);
+          });
+          if (facultySearchedStudents.length > 0) {
+            facultyMatchedStudentSelect.selectedIndex = 1;
+            selectActiveStudent(facultySearchedStudents[0]);
+          } else {
+            facultyStudentAttendanceWrap.style.display = "none";
+            facultyStudentAttendancePrompt.style.display = "block";
+            facultyStudentAttendancePrompt.innerHTML = "No student found matching '" + query + "'.";
+          }
+        })
+        .catch(function (err) {
+          showToast(err.message);
+        });
+    }
+
+    facultySearchBtn.onclick = function () {
+      triggerStudentSearch(facultyStudentSearchInput.value.trim());
+    };
+    facultyStudentSearchInput.onkeyup = function (e) {
+      if (e.key === "Enter") {
+        triggerStudentSearch(facultyStudentSearchInput.value.trim());
+      }
+    };
+
+    facultyMatchedStudentSelect.onchange = function () {
+      const selId = facultyMatchedStudentSelect.value;
+      const found = facultySearchedStudents.find(function (s) { return String(s.userId) === selId; });
+      if (found) {
+        selectActiveStudent(found);
+      } else {
+        facultyStudentAttendanceWrap.style.display = "none";
+        facultyStudentAttendancePrompt.style.display = "block";
+      }
+    };
+
+    function selectActiveStudent(st) {
+      activeFacultyStudent = st;
+      facultyActiveStudentName.textContent = st.fullName;
+      facultyActiveStudentDetails.textContent = "Student ID: #" + st.userId + (st.sapId ? " | SAP ID: " + st.sapId : "") + (st.rollNo ? " | Roll No: " + st.rollNo : "") + " | Batch: " + (st.batch || "2024-2028") + " | Course: " + (st.course || "CSE");
+
+      renderStudentAttendanceRows(st.records || []);
+      facultyStudentAttendanceWrap.style.display = "block";
+      facultyStudentAttendancePrompt.style.display = "none";
+    }
+
+    function renderStudentAttendanceRows(records) {
+      facultyStudentAttendanceTableBody.innerHTML = "";
+      let totalAtt = 0;
+      let totalCond = 0;
+
+      // Fallback subjects if student has no saved records yet
+      const rows = records.length > 0 ? records : [
+        { subjectId: "1", subjectName: "Engineering Mathematics", attended: 18, conducted: 22 },
+        { subjectId: "2", subjectName: "Data Structures & Algorithms", attended: 20, conducted: 24 },
+        { subjectId: "3", subjectName: "Database Management Systems", attended: 16, conducted: 20 },
+        { subjectId: "4", subjectName: "Operating Systems", attended: 14, conducted: 18 },
+        { subjectId: "5", subjectName: "Software Engineering & Agile", attended: 15, conducted: 16 }
+      ];
+
+      rows.forEach(function (r, idx) {
+        const att = Number(r.attended || 0);
+        const cond = Number(r.conducted || 20);
+        totalAtt += att;
+        totalCond += cond;
+        const pct = cond > 0 ? Math.round((att / cond) * 100) : 0;
+        const isSafe = pct >= minPercent;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+          "<td><strong>" + (r.subjectName || "Subject " + (idx + 1)) + "</strong></td>" +
+          "<td><span class='readonly-conducted-pill'><i class='fa-solid fa-chalkboard'></i> " + cond + "</span></td>" +
+          "<td>" +
+            "<input type='number' min='0' max='" + cond + "' class='faculty-student-att-input' " +
+            "data-subject-id='" + r.subjectId + "' data-subject-name='" + (r.subjectName || "") + "' data-conducted='" + cond + "' value='" + att + "' " +
+            "style='max-width:130px; font-weight:700; color:var(--secondary);' />" +
+          "</td>" +
+          "<td><strong class='faculty-student-row-pct' style='color:" + (isSafe ? "var(--safe)" : "var(--danger)") + ";'>" + pct + "%</strong></td>" +
+          "<td><span class='badge " + (isSafe ? "safe" : "danger") + "'>" + (isSafe ? "Safe" : "Unsafe") + "</span></td>";
+        facultyStudentAttendanceTableBody.appendChild(tr);
+      });
+
+      // Recalculate student overall percentage
+      updateStudentOverallCard();
+
+      // Listen for live input changes to calculate subject % & enforce validation feedback
+      const attInputs = facultyStudentAttendanceTableBody.querySelectorAll(".faculty-student-att-input");
+      attInputs.forEach(function (inp) {
+        inp.oninput = function () {
+          const row = inp.closest("tr");
+          const cond = Number(inp.getAttribute("data-conducted") || 0);
+          const att = Number(inp.value || 0);
+          const pctElem = row.querySelector(".faculty-student-row-pct");
+          const badgeElem = row.querySelector(".badge");
+
+          if (att < 0 || att > cond) {
+            inp.style.borderColor = "var(--danger)";
+            pctElem.textContent = "Invalid (> " + cond + ")";
+            pctElem.style.color = "var(--danger)";
+            badgeElem.className = "badge danger";
+            badgeElem.textContent = "Limit Exceeded";
+            facultyAttendanceFeedback.innerHTML = "<span style='color:var(--danger); font-weight:600;'><i class='fa-solid fa-triangle-exclamation'></i> Invalid: Attended cannot exceed total classes conducted (" + cond + ").</span>";
+          } else {
+            inp.style.borderColor = "var(--border)";
+            const p = cond > 0 ? Math.round((att / cond) * 100) : 0;
+            pctElem.textContent = p + "%";
+            pctElem.style.color = p >= minPercent ? "var(--safe)" : "var(--danger)";
+            badgeElem.className = "badge " + (p >= minPercent ? "safe" : "danger");
+            badgeElem.textContent = p >= minPercent ? "Safe" : "Unsafe";
+            facultyAttendanceFeedback.innerHTML = "<span style='color:var(--safe);'><i class='fa-solid fa-shield-halved'></i> Attendance limits verified: 0 &le; Attended &le; Conducted.</span>";
+          }
+          updateStudentOverallCard();
+        };
+      });
+    }
+
+    function updateStudentOverallCard() {
+      const attInputs = facultyStudentAttendanceTableBody.querySelectorAll(".faculty-student-att-input");
+      let totalA = 0;
+      let totalC = 0;
+      attInputs.forEach(function (inp) {
+        totalA += Number(inp.value || 0);
+        totalC += Number(inp.getAttribute("data-conducted") || 0);
+      });
+      const overall = totalC > 0 ? Math.round((totalA / totalC) * 100) : 0;
+      facultyActiveStudentPct.textContent = overall + "%";
+      facultyActiveStudentPct.style.color = overall >= minPercent ? "var(--safe)" : "var(--danger)";
+    }
+
+    // USER STORY 10: Save Student Attendance Records
+    saveFacultyStudentAttendanceBtn.onclick = function () {
+      if (!activeFacultyStudent) {
+        showToast("Please select a student first.");
+        return;
+      }
+
+      const attInputs = facultyStudentAttendanceTableBody.querySelectorAll(".faculty-student-att-input");
+      const rows = [];
+
+      for (let i = 0; i < attInputs.length; i++) {
+        const inp = attInputs[i];
+        const att = Number(inp.value);
+        const cond = Number(inp.getAttribute("data-conducted") || 0);
+        const name = inp.getAttribute("data-subject-name");
+
+        // US 10 Acceptance Criteria: Attended classes cannot exceed total classes conducted
+        if (isNaN(att) || att < 0) {
+          showToast("Invalid attendance value for " + name + ". Cannot be negative.");
+          inp.focus();
+          return;
+        }
+        if (att > cond) {
+          showToast("Invalid attendance value for " + name + ": Attended (" + att + ") exceeds total classes conducted (" + cond + ").");
+          inp.focus();
+          return;
+        }
+
+        rows.push({
+          subjectId: inp.getAttribute("data-subject-id"),
+          subjectName: name,
+          attended: att,
+          conducted: cond
+        });
+      }
+
+      saveFacultyStudentAttendanceBtn.disabled = true;
+      saveFacultyStudentAttendanceBtn.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Updating Student Records...";
+
+      fetchData("api/faculty_manage.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "update_student_attendance",
+          userId: activeFacultyStudent.userId,
+          batch: activeFacultyStudent.batch,
+          course: activeFacultyStudent.course,
+          semester: activeFacultyStudent.semesterId,
+          rows: rows
+        })
+      })
+        .then(function (data) {
+          if (!data.ok) throw new Error(data.message || "Failed to update student attendance.");
+          showToast(data.message || "Student attendance records updated successfully.");
+          activeFacultyStudent.records = rows;
+          const found = facultySearchedStudents.find(function(s) { return String(s.userId) === String(activeFacultyStudent.userId); });
+          if (found) {
+            found.records = rows;
+          }
+          renderStudentAttendanceRows(rows);
+        })
+        .catch(function (err) {
+          showToast(err.message);
+        })
+        .finally(function () {
+          saveFacultyStudentAttendanceBtn.disabled = false;
+          saveFacultyStudentAttendanceBtn.innerHTML = "<i class='fa-solid fa-circle-check'></i> Save & Update Student Attendance";
+        });
+    };
+
+    // Password Eye Toggle
+    const toggleLoginPasswordBtn = document.getElementById("toggleLoginPasswordBtn");
+    const loginPasswordEyeIcon = document.getElementById("loginPasswordEyeIcon");
+    if (toggleLoginPasswordBtn && loginPasswordEyeIcon) {
+      toggleLoginPasswordBtn.onclick = function () {
+        const isPwd = loginPassword.type === "password";
+        loginPassword.type = isPwd ? "text" : "password";
+        loginPasswordEyeIcon.className = isPwd ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
+      };
+    }
+
+    const toggleFacultyPasswordBtn = document.getElementById("toggleFacultyPasswordBtn");
+    const facultyPasswordEyeIcon = document.getElementById("facultyPasswordEyeIcon");
+    if (toggleFacultyPasswordBtn && facultyPasswordEyeIcon) {
+      toggleFacultyPasswordBtn.onclick = function () {
+        const isPwd = facultyLoginPassword.type === "password";
+        facultyLoginPassword.type = isPwd ? "text" : "password";
+        facultyPasswordEyeIcon.className = isPwd ? "fa-solid fa-eye-slash" : "fa-solid fa-eye";
+      };
+    }
+
+    // Server Settings Modal & Central Sync Configuration
+    const serverSettingsBtn = document.getElementById("serverSettingsBtn");
+    const headerSyncBtn = document.getElementById("headerSyncBtn");
+    const serverModal = document.getElementById("serverModal");
+    const closeServerModalBtn = document.getElementById("closeServerModalBtn");
+    const serverUrlInput = document.getElementById("serverUrlInput");
+    const saveServerUrlBtn = document.getElementById("saveServerUrlBtn");
+    const resetServerUrlBtn = document.getElementById("resetServerUrlBtn");
+    const testServerBtn = document.getElementById("testServerBtn");
+    const autoDetectServerBtn = document.getElementById("autoDetectServerBtn");
+    const syncPresetBtns = document.querySelectorAll(".sync-preset-btn");
+
+    function openServerSyncModal() {
+      if (!serverModal) return;
+      const current = getActiveServerBase();
+      if (serverUrlInput) serverUrlInput.value = current;
+      updateSyncIndicator(serverOnline, current);
+      serverModal.classList.add("show");
+    }
+
+    function checkServerConnectivity() {
+      const target = getActiveServerBase();
+      const start = Date.now();
+      return fetch(target + "/api/options.php", { method: "GET", headers: { "Accept": "application/json" }, cache: "no-store" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          const lat = Date.now() - start;
+          updateSyncIndicator(Boolean(data && data.ok), target);
+          return { ok: true, latency: lat, url: target };
+        })
+        .catch(function (err) {
+          updateSyncIndicator(false, target);
+          return { ok: false, error: err.message, url: target };
+        });
+    }
+
+    if (headerSyncBtn) {
+      headerSyncBtn.onclick = openServerSyncModal;
+    }
+    if (serverSettingsBtn) {
+      serverSettingsBtn.onclick = openServerSyncModal;
+    }
+    if (closeServerModalBtn && serverModal) {
+      closeServerModalBtn.onclick = function () {
+        serverModal.classList.remove("show");
+      };
+    }
+    if (serverModal) {
+      serverModal.onclick = function (e) {
+        if (e.target === serverModal) serverModal.classList.remove("show");
+      };
+    }
+
+    syncPresetBtns.forEach(function (btn) {
+      btn.onclick = function () {
+        const u = btn.getAttribute("data-url");
+        if (u && serverUrlInput) {
+          serverUrlInput.value = u;
+          testServerUrl(u);
+        }
+      };
+    });
+
+    function testServerUrl(urlToTest) {
+      const clean = (urlToTest || serverUrlInput.value || "").trim().replace(/\/+$/, "");
+      if (!clean) {
+        showToast("Please enter a valid server URL to test.");
+        return Promise.resolve(false);
+      }
+      if (testServerBtn) {
+        testServerBtn.disabled = true;
+        testServerBtn.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Testing...";
+      }
+      const start = Date.now();
+      return fetch(clean + "/api/options.php", { method: "GET", headers: { "Accept": "application/json" }, cache: "no-store" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          const lat = Date.now() - start;
+          if (data && data.ok) {
+            showToast("Server online! Response time: " + lat + "ms.");
+            updateSyncIndicator(true, clean);
+            return true;
+          } else {
+            throw new Error("Invalid response format.");
+          }
+        })
+        .catch(function (err) {
+          showToast("Cannot reach server at " + clean + " (" + err.message + ")");
+          updateSyncIndicator(false, clean);
+          return false;
+        })
+        .finally(function () {
+          if (testServerBtn) {
+            testServerBtn.disabled = false;
+            testServerBtn.innerHTML = "<i class='fa-solid fa-bolt'></i> Test Connection";
+          }
+        });
+    }
+
+    if (testServerBtn) {
+      testServerBtn.onclick = function () {
+        testServerUrl(serverUrlInput.value);
+      };
+    }
+
+    if (autoDetectServerBtn) {
+      autoDetectServerBtn.onclick = function () {
+        autoDetectServerBtn.disabled = true;
+        autoDetectServerBtn.innerHTML = "<i class='fa-solid fa-spinner fa-spin'></i> Detecting...";
+        const saved = (localStorage.getItem("attendance_api_server_url") || "").trim();
+        const list = saved ? [saved, ...CANDIDATE_SERVERS] : [...CANDIDATE_SERVERS];
+        const unique = Array.from(new Set(list));
+
+        Promise.all(unique.map(function (c) {
+          const s = Date.now();
+          return fetch(c + "/api/options.php", { method: "GET", headers: { "Accept": "application/json" }, cache: "no-store" })
+            .then(function (res) { return res.ok ? res.json() : null; })
+            .then(function (d) { return { url: c, ok: Boolean(d && d.ok), latency: Date.now() - s }; })
+            .catch(function () { return { url: c, ok: false }; });
+        })).then(function (resList) {
+          const live = resList.find(function (r) { return r.ok; });
+          if (live) {
+            serverUrlInput.value = live.url;
+            showToast("Detected active server at " + live.url + " (" + live.latency + "ms)!");
+            updateSyncIndicator(true, live.url);
+          } else {
+            showToast("No active local servers detected automatically. Enter server address manually.");
+          }
+        }).finally(function () {
+          autoDetectServerBtn.disabled = false;
+          autoDetectServerBtn.innerHTML = "<i class='fa-solid fa-wand-magic-sparkles'></i> Auto-Detect Server";
+        });
+      };
+    }
+
+    if (saveServerUrlBtn) {
+      saveServerUrlBtn.onclick = function () {
+        const val = (serverUrlInput.value || "").trim().replace(/\/+$/, "");
+        if (val) {
+          localStorage.setItem("attendance_api_server_url", val);
+          showToast("Connected to central server: " + val);
+        } else {
+          localStorage.removeItem("attendance_api_server_url");
+          showToast("Reset to default network server.");
+        }
+        updateSyncIndicator(true, getActiveServerBase());
+        if (serverModal) serverModal.classList.remove("show");
+        bootstrapSession();
+      };
+    }
+
+    if (resetServerUrlBtn) {
+      resetServerUrlBtn.onclick = function () {
+        localStorage.setItem("attendance_api_server_url", DEFAULT_SERVER_URL);
+        if (serverUrlInput) serverUrlInput.value = DEFAULT_SERVER_URL;
+        updateSyncIndicator(true, DEFAULT_SERVER_URL);
+        showToast("Connected to default central server (" + DEFAULT_SERVER_URL + ").");
+        if (serverModal) serverModal.classList.remove("show");
+        bootstrapSession();
+      };
+    }
+
+    updateSyncIndicator(true, getActiveServerBase());
+    checkServerConnectivity();
+    bootstrapSession();
+  </script>
+
+  <!-- Central Server Connection & Live Sync Modal -->
+  <div id="serverModal" class="modal-backdrop">
+    <div class="modal-sheet">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 style="margin:0; font-size:1.15rem; color:var(--heading); display:flex; align-items:center; gap:8px;">
+          <i class="fa-solid fa-arrows-spin" style="color:var(--primary);"></i> Central Server & Live Sync
+        </h3>
+        <button id="closeServerModalBtn" type="button" class="btn btn-ghost" style="padding:4px 10px; min-height:unset; font-size:1.1rem;"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="muted" style="font-size:0.85rem; margin:0 0 14px; line-height:1.45;">
+        The Mobile App and PC Website share the <strong>exact same central database</strong>. Logins, attendance edits, and faculty updates synchronize live between all devices.
+      </p>
+
+      <div style="background:var(--surface-soft); padding:10px 14px; border-radius:12px; border:1px solid var(--border); margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:0.82rem; color:var(--muted);">Sync Status:</span>
+          <span id="syncModalStatusBadge" class="badge safe" style="font-size:0.8rem;"><i class="fa-solid fa-circle-check"></i> Connected & Live Synced</span>
+        </div>
+        <div style="font-size:0.78rem; color:var(--muted); margin-top:5px; word-break:break-all;">
+          Central Endpoint: <strong id="syncModalCurrentUrl" style="color:var(--primary);">http://10.180.66.61:3000</strong>
+        </div>
+      </div>
+
+      <label class="field" style="margin-bottom:12px;">
+        <span style="font-size:0.84rem;">Server Backend URL (IP:Port or Domain)</span>
+        <input id="serverUrlInput" type="url" placeholder="http://10.180.66.61:3000" style="font-weight:600; color:var(--primary);" />
+      </label>
+
+      <div style="margin-bottom:16px;">
+        <span style="font-size:0.78rem; color:var(--muted); display:block; margin-bottom:6px;">Quick Presets:</span>
+        <div style="display:flex; flex-wrap:wrap; gap:6px;">
+          <button type="button" class="btn btn-ghost sync-preset-btn" data-url="http://10.180.66.61:3000" style="font-size:0.76rem; padding:5px 10px;">
+            <i class="fa-solid fa-wifi"></i> PC Wi-Fi (10.180.66.61:3000)
+          </button>
+          <button type="button" class="btn btn-ghost sync-preset-btn" data-url="http://10.0.2.2:3000" style="font-size:0.76rem; padding:5px 10px;">
+            <i class="fa-brands fa-android"></i> Emulator (10.0.2.2:3000)
+          </button>
+          <button type="button" class="btn btn-ghost sync-preset-btn" data-url="http://localhost:3000" style="font-size:0.76rem; padding:5px 10px;">
+            <i class="fa-solid fa-laptop"></i> Localhost (localhost:3000)
+          </button>
+          <button type="button" id="autoDetectServerBtn" class="btn btn-ghost" style="font-size:0.76rem; padding:5px 10px; color:var(--secondary); border-color:var(--secondary);">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Detect Server
+          </button>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:flex-end; gap:8px;">
+        <button id="testServerBtn" class="btn btn-ghost" type="button" style="font-size:0.85rem;"><i class="fa-solid fa-bolt"></i> Test Connection</button>
+        <button id="saveServerUrlBtn" class="btn btn-primary" type="button" style="font-size:0.85rem;"><i class="fa-solid fa-arrows-rotate"></i> Connect & Sync</button>
+        <button id="resetServerUrlBtn" class="btn btn-ghost" type="button" style="font-size:0.85rem;" title="Reset to default Wi-Fi server">Reset</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

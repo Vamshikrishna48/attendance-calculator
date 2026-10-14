@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#050813" />
+  <title>Attendance Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css?v=20260410-subject-expand" />
+</head>
+<body data-theme="dark" data-view="admin-login">
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="grid-glow"></div>
+
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="app-header-copy">
+        <h1>Attendance Admin Panel</h1>
+        <p>Control current academic data and create entirely new batch structures from one place.</p>
+      </div>
+      <div class="app-header-actions auth-status-card">
+        <div class="user-chip" id="adminUserChip"></div>
+        <a class="btn btn-ghost" href="index.html"><i class="fa-solid fa-graduation-cap"></i> Student Page</a>
+        <button id="adminLogoutBtn" class="btn btn-ghost" type="button"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+      </div>
+    </header>
+
+    <section id="admin-login-screen" class="screen active" aria-labelledby="admin-login-title">
+      <div class="card auth-shell">
+        <div class="auth-hero">
+          <span class="auth-eyebrow">Authorized Access</span>
+          <h2 id="admin-login-title">Admin Login</h2>
+          <p class="muted">Only authorized admins can manage existing subject data, build new batch structures, and update what students see.</p>
+        </div>
+
+        <div class="auth-panel">
+          <form id="adminLoginForm" class="auth-form">
+            <label class="field">
+              <span>Admin Username or Email</span>
+              <input id="adminEmail" type="text" autocomplete="username" placeholder="Admin Email or Username" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <div class="password-input-wrap">
+                <input id="adminPassword" type="password" autocomplete="current-password" placeholder="••••••••" required />
+                <button type="button" class="password-toggle-eye" id="toggleAdminPasswordBtn" title="Toggle password visibility">
+                  <i class="fa-solid fa-eye" id="adminPasswordEyeIcon"></i>
+                </button>
+              </div>
+            </label>
+
+            <button id="adminLoginBtn" class="btn btn-primary auth-submit" type="submit">Login As Admin</button>
+
+            <div style="display: flex; gap: 8px; justify-content: center; margin-top: 12px; flex-wrap: wrap;">
+              <a class="btn btn-ghost auth-link-btn" href="index.html" style="flex:1;"><i class="fa-solid fa-graduation-cap"></i> Return to Student Portal</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="admin-dashboard-screen" class="screen" aria-labelledby="admin-dashboard-title">
+      <div class="admin-stack">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2 id="admin-dashboard-title">Admin Workspace</h2>
+              <p class="muted">Use the first section to edit live data. Use the second section to build a new batch, set its course, choose semester count, and attach subjects.</p>
+            </div>
+            <button id="refreshAdminBtn" class="btn btn-ghost" type="button">Refresh Data</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>Manage Existing Data</h2>
+              <p class="muted">Update the shared subject library, attach existing subjects to any batch, program, and semester, or remove a linked subject from one specific batch-course-semester combination.</p>
+            </div>
+          </div>
+
+          <div class="admin-grid admin-grid-wide">
+            <article class="panel">
+              <h3>Edit Existing Subject</h3>
+              <form id="editSubjectForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>Select Subject</span>
+                  <select id="editSubjectSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Subject Name</span>
+                  <input id="editSubjectName" type="text" required />
+                </label>
+                <label class="field">
+                  <span>Credits</span>
+                  <input id="editSubjectCredits" type="number" min="0" required />
+                </label>
+                <label class="field">
+                  <span>Total Hours</span>
+                  <input id="editSubjectHours" type="number" min="0" required />
+                </label>
+                <div class="admin-action-row">
+                  <button id="updateSubjectBtn" class="btn btn-primary" type="submit">Update Subject</button>
+                  <button id="deleteSubjectBtn" class="btn btn-ghost btn-danger-soft" type="button">Delete Subject</button>
+                </div>
+              </form>
+            </article>
+
+            <article class="panel">
+              <h3>Attach Shared Subject To Existing Structure</h3>
+              <form id="existingMappingForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>Batch</span>
+                  <select id="existingBatchSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Program / Course</span>
+                  <select id="existingProgramSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Semester</span>
+                  <select id="existingSemesterSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Existing Subject(s)</span>
+                  <input id="existingSubjectSearch" type="text" placeholder="Search subjects" />
+                  <div id="existingSubjectChecklist" class="checkbox-list"></div>
+                </label>
+                <button id="existingMappingBtn" class="btn btn-primary" type="submit">Attach Subject</button>
+              </form>
+            </article>
+
+            <article class="panel">
+              <h3>Remove Linked Subject From Structure</h3>
+              <form id="removeMappingForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>Batch</span>
+                  <select id="removeBatchSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Program / Course</span>
+                  <select id="removeProgramSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Semester</span>
+                  <select id="removeSemesterSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Linked Subject(s)</span>
+                  <input id="removeSubjectSearch" type="text" placeholder="Search linked subjects" />
+                  <div id="removeSubjectChecklist" class="checkbox-list"></div>
+                </label>
+                <button id="removeMappingBtn" class="btn btn-primary" type="submit">Remove Linked Subject</button>
+              </form>
+            </article>
+
+            <article class="panel">
+              <h3>Delete Semester From Program</h3>
+              <form id="deleteProgramSemesterForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>Batch</span>
+                  <select id="deleteSemesterBatchSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Program / Course</span>
+                  <select id="deleteSemesterProgramSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Semester</span>
+                  <select id="deleteSemesterSelect" required></select>
+                </label>
+                <button id="deleteProgramSemesterBtn" class="btn btn-ghost btn-danger-soft" type="submit">Delete Semester From Program</button>
+              </form>
+            </article>
+
+            <article class="panel">
+              <h3>Add New Semester To Batch And Course</h3>
+              <form id="addProgramSemesterForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>Batch</span>
+                  <select id="addSemesterBatchSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Program / Course</span>
+                  <select id="addSemesterProgramSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Semester Name</span>
+                  <input id="addSemesterNameInput" type="text" placeholder="Semester 9" required />
+                </label>
+                <button id="addProgramSemesterBtn" class="btn btn-primary" type="submit">Add Semester To Batch And Course</button>
+              </form>
+            </article>
+
+            <article class="panel">
+              <h3>Delete Course / Program From Batch</h3>
+              <form id="deleteProgramForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>Batch</span>
+                  <select id="deleteProgramBatchSelect" required></select>
+                </label>
+                <label class="field">
+                  <span>Program / Course</span>
+                  <select id="deleteProgramSelect" required></select>
+                </label>
+                <button id="deleteProgramBtn" class="btn btn-ghost btn-danger-soft" type="submit">Delete Program From Batch</button>
+              </form>
+            </article>
+
+            <article class="panel">
+              <h3>Delete Batch</h3>
+              <form id="deleteBatchForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>Batch</span>
+                  <select id="deleteBatchSelect" required></select>
+                </label>
+                <button id="deleteBatchBtn" class="btn btn-ghost btn-danger-soft" type="submit">Delete Batch</button>
+              </form>
+            </article>
+          </div>
+
+          <div class="table-wrap admin-table-wrap admin-table-tall">
+            <table>
+              <thead>
+                <tr>
+                  <th>Batch</th>
+                  <th>Program</th>
+                  <th>Semester</th>
+                  <th>Subject</th>
+                  <th>Credits</th>
+                  <th>Total Hours</th>
+                </tr>
+              </thead>
+              <tbody id="mappingTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>Create New Batch Structure</h2>
+              <p class="muted">Create a new batch with its program, choose how many semesters it will have, and separately create subjects in the shared course table when needed.</p>
+            </div>
+          </div>
+
+          <div class="admin-grid admin-grid-wide">
+            <article class="panel">
+              <h3>Create Batch + Program + Semesters</h3>
+              <form id="structureForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>New Batch</span>
+                  <input id="structureBatchName" type="text" placeholder="2026-2030" required />
+                </label>
+                <label class="field">
+                  <span>Program / Course Name</span>
+                  <input id="structureProgramName" type="text" placeholder="CSE-AI" required />
+                </label>
+                <label class="field">
+                  <span>Number Of Semesters</span>
+                  <input id="structureSemesterCount" type="number" min="1" max="12" value="8" required />
+                </label>
+                <button id="structureSubmitBtn" class="btn btn-primary" type="submit">Create Structure</button>
+              </form>
+            </article>
+
+            <article class="panel">
+              <h3>Create Subject In Course Table</h3>
+              <form id="courseTableSubjectForm" class="auth-form compact-form">
+                <label class="field">
+                  <span>Subject Name</span>
+                  <input id="courseTableSubjectName" type="text" placeholder="Compiler Design" required />
+                </label>
+                <label class="field">
+                  <span>Credits</span>
+                  <input id="courseTableSubjectCredits" type="number" min="0" value="0" required />
+                </label>
+                <label class="field">
+                  <span>Total Hours</span>
+                  <input id="courseTableSubjectHours" type="number" min="0" value="0" required />
+                </label>
+                <button id="courseTableSubjectBtn" class="btn btn-primary" type="submit">Create Subject</button>
+              </form>
+            </article>
+          </div>
+        </div>
+
+        <div class="admin-data-grid">
+          <div class="admin-data-column">
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h2>Available Batches</h2>
+                  <p class="muted">All batches currently visible to students.</p>
+                </div>
+              </div>
+              <div id="batchList" class="tag-list"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h2>Semesters</h2>
+                  <p class="muted">Semester names available in the system.</p>
+                </div>
+              </div>
+              <div id="semesterList" class="tag-list"></div>
+            </div>
+          </div>
+
+          <div class="admin-data-column">
+            <div class="card">
+              <div class="card-head">
+                <div>
+                  <h2>Programs</h2>
+                  <p class="muted">Programs currently linked to each batch.</p>
+                </div>
+              </div>
+              <div class="table-wrap admin-table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Batch</th>
+                      <th>Program</th>
+                    </tr>
+                  </thead>
+                  <tbody id="programTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card admin-subject-card">
+              <div class="card-head">
+                <div>
+                  <h2>Subjects</h2>
+                  <p class="muted">One shared subject list. Each subject name exists only once and can be reused anywhere.</p>
+                </div>
+              </div>
+              <div class="table-wrap admin-table-wrap admin-subject-table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Subject</th>
+                      <th>Credits</th>
+                      <th>Total Hours</th>
+                    </tr>
+                  </thead>
+                  <tbody id="subjectTable"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="defaultAdminTools" class="default-admin-tools">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>Authorized Admins</h2>
+              <p class="muted">Add or remove authorized admins who can use this panel.</p>
+            </div>
+          </div>
+          <form id="adminUserForm" class="form-grid">
+            <label class="field">
+              <span>Full Name</span>
+              <input id="newAdminName" type="text" required />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input id="newAdminEmail" type="email" required />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <input id="newAdminPassword" type="password" minlength="8" required />
+            </label>
+            <button id="adminUserSubmitBtn" class="btn btn-primary" type="submit">Add Admin User</button>
+          </form>
+          <div class="table-wrap admin-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adminUserTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h2>Student Profiles</h2>
+              <p class="muted">Remove a student profile and its saved attendance data while keeping the student login account.</p>
+            </div>
+          </div>
+          <div class="table-wrap admin-table-wrap admin-table-tall">
+            <table>
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Email</th>
+                  <th>Batch</th>
+                  <th>Course</th>
+                  <th>Semester</th>
+                  <th>Saved Records</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="studentProfileTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="admin.js?v=20260410-admin-tools"></script>
+</body>
+</html>

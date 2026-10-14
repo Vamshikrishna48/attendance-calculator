@@ -1,0 +1,26 @@
+# Android build & cache
+.gradle/
+**/build/
+android_app/.gradle/
+android_app/build/
+android_app/app/build/
+local.properties
+android_app/local.properties
+*.idsig
+
+# Node / dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary & intermediate build files
+temp_*.apk
+*.tmp
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+.vscode/

@@ -1,0 +1,10 @@
+{
+  "name": "attendance-prediction-workspace",
+  "version": "1.0.0",
+  "description": "Attendance Prediction and Faculty/Admin Management System",
+  "scripts": {
+    "start": "node attendance_pred/server.js",
+    "dev": "node attendance_pred/server.js"
+  },
+  "dependencies": {}
+}

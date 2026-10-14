@@ -1,0 +1,2238 @@
+{
+  "batches": [
+    {
+      "id": 1,
+      "name": "2024-2028"
+    },
+    {
+      "id": 2,
+      "name": "2025-2029"
+    }
+  ],
+  "programs": [
+    {
+      "id": 1,
+      "name": "BTech CSE",
+      "label": "BTech CSE",
+      "batch": "2024-2028"
+    },
+    {
+      "id": 2,
+      "name": "BTech CSE Data Science",
+      "label": "BTech CSE Data Science",
+      "batch": "2025-2029"
+    }
+  ],
+  "semesters": [
+    {
+      "id": 1,
+      "name": "Semester 1"
+    },
+    {
+      "id": 2,
+      "name": "Semester 2"
+    },
+    {
+      "id": 3,
+      "name": "Semester 3"
+    },
+    {
+      "id": 4,
+      "name": "Semester 4"
+    },
+    {
+      "id": 5,
+      "name": "Semester 5"
+    },
+    {
+      "id": 6,
+      "name": "Semester 6"
+    },
+    {
+      "id": 7,
+      "name": "Semester 7"
+    },
+    {
+      "id": 8,
+      "name": "Semester 8"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "name": "Calculus",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 60
+    },
+    {
+      "id": 2,
+      "name": "Physics",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 60
+    },
+    {
+      "id": 3,
+      "name": "Elements of Biology",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 45
+    },
+    {
+      "id": 4,
+      "name": "Programming for Problem Solving",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 60
+    },
+    {
+      "id": 5,
+      "name": "Engineering Graphics and Design",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 45
+    },
+    {
+      "id": 6,
+      "name": "Professional Ethics",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 7,
+      "name": "Constitution of India",
+      "credits": 0,
+      "totalSemesterClasses": 20,
+      "conductedClasses": 20
+    },
+    {
+      "id": 8,
+      "name": "Critical Thinking",
+      "credits": 0,
+      "totalSemesterClasses": 20,
+      "conductedClasses": 20
+    },
+    {
+      "id": 9,
+      "name": "Linear Algebra and Differential Equations",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 23
+    },
+    {
+      "id": 10,
+      "name": "Quantum and Statistical Physics",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 11,
+      "name": "English Communication",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 12,
+      "name": "Basic Electrical and Electronics Engineering",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 13,
+      "name": "Data Structures and Algorithms",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 14,
+      "name": "Environmental Science",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 15,
+      "name": "Digital Manufacturing Laboratory",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 16,
+      "name": "Electrical and Electronics Workshop",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 17,
+      "name": "Design Thinking",
+      "credits": 0,
+      "totalSemesterClasses": 20,
+      "conductedClasses": 20
+    },
+    {
+      "id": 18,
+      "name": "Probability and Statistics",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 19,
+      "name": "Discrete Mathematics",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 20,
+      "name": "Technical Communication",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 21,
+      "name": "Management Accounting for Engineers",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 22,
+      "name": "Digital Logic Design",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 23,
+      "name": "Database Management Systems",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 24,
+      "name": "Computer Networks",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 25,
+      "name": "Data Extraction and Processing",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 26,
+      "name": "Python Programming",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 27,
+      "name": "Community Service",
+      "credits": 0,
+      "totalSemesterClasses": 20,
+      "conductedClasses": 20
+    },
+    {
+      "id": 28,
+      "name": "Complex Variables and Transforms",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 29,
+      "name": "Computer Organization and Architecture",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 30,
+      "name": "Design and Analysis of Algorithms",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 31,
+      "name": "Principles of Economics and Management",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 32,
+      "name": "Microprocessor and Microcontroller",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 33,
+      "name": "Theoretical Computer Science",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 34,
+      "name": "Web Programming",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 35,
+      "name": "Software Engineering",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 36,
+      "name": "Artificial Intelligence",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 37,
+      "name": "Image and Video Processing",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 38,
+      "name": "Operating Systems",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 39,
+      "name": "Department Elective I",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 40,
+      "name": "Open Elective I",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 41,
+      "name": "Open Elective II",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 42,
+      "name": "Cyber Security",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 43,
+      "name": "Embedded Systems",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 44,
+      "name": "Machine Learning",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 45,
+      "name": "Department Elective II",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 46,
+      "name": "Department Elective III",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 47,
+      "name": "Open Elective III",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 48,
+      "name": "Open Elective IV",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 49,
+      "name": "Interpersonal Skills",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 50,
+      "name": "Cloud Computing",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 51,
+      "name": "Department Elective IV",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 52,
+      "name": "Department Elective V",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 53,
+      "name": "Department Elective VI",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 54,
+      "name": "Open Elective V",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 55,
+      "name": "Capstone Project",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 56,
+      "name": "Technical Internship",
+      "credits": 0,
+      "totalSemesterClasses": 20,
+      "conductedClasses": 20
+    },
+    {
+      "id": 57,
+      "name": "Project",
+      "credits": 10,
+      "totalSemesterClasses": 100,
+      "conductedClasses": 22
+    },
+    {
+      "id": 58,
+      "name": "Computational Thinking for Problem Solving",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 59,
+      "name": "Essential Electronics Practices",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 60,
+      "name": "Engineering Ethics",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 61,
+      "name": "Indian Knowledge System",
+      "credits": 0,
+      "totalSemesterClasses": 20,
+      "conductedClasses": 20
+    },
+    {
+      "id": 62,
+      "name": "Quantum Physics",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 63,
+      "name": "Product Realization",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 64,
+      "name": "Transforming Ideas to Innovation",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 65,
+      "name": "Object Oriented Programming",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 66,
+      "name": "Object Oriented Programming Lab",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 67,
+      "name": "Programming with Python",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 68,
+      "name": "Data Structures and Algorithms Lab",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 69,
+      "name": "Digital Circuits and Computer Architecture",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 70,
+      "name": "Program Elective-I",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 71,
+      "name": "Database Management Systems Lab",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 72,
+      "name": "Artificial Intelligence Algorithms",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 73,
+      "name": "Applied Machine Learning",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 74,
+      "name": "Website Designing and Development",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 75,
+      "name": "Design Experience I",
+      "credits": 1,
+      "totalSemesterClasses": 15,
+      "conductedClasses": 15
+    },
+    {
+      "id": 76,
+      "name": "Program Elective-II",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 77,
+      "name": "Principles of Data, Signal, and Image Analysis",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 78,
+      "name": "Program Elective-III",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 79,
+      "name": "Open Elective-I",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 80,
+      "name": "Open Elective-II",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 81,
+      "name": "Design Experience II",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 82,
+      "name": "Career Guidance",
+      "credits": 0,
+      "totalSemesterClasses": 20,
+      "conductedClasses": 20
+    },
+    {
+      "id": 83,
+      "name": "Data Wrangling Fundamentals",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 84,
+      "name": "Data Visualization",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 85,
+      "name": "Program Elective-IV",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 86,
+      "name": "Program Elective-V",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 87,
+      "name": "Open Elective-III",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 88,
+      "name": "Open Elective-IV",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 89,
+      "name": "Design Experience III",
+      "credits": 2,
+      "totalSemesterClasses": 30,
+      "conductedClasses": 22
+    },
+    {
+      "id": 90,
+      "name": "Deep Learning: Fundamentals and Applications",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 91,
+      "name": "Big Data Analytics for Engineers",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    },
+    {
+      "id": 92,
+      "name": "Program Elective-VI",
+      "credits": 4,
+      "totalSemesterClasses": 60,
+      "conductedClasses": 22
+    },
+    {
+      "id": 93,
+      "name": "Open Elective-V",
+      "credits": 3,
+      "totalSemesterClasses": 45,
+      "conductedClasses": 22
+    }
+  ],
+  "mappings": [
+    {
+      "id": 1,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 1,
+      "subjectName": "Calculus",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 2,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 2,
+      "subjectName": "Physics",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 3,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 3,
+      "subjectName": "Elements of Biology",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 4,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 4,
+      "subjectName": "Programming for Problem Solving",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 5,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 5,
+      "subjectName": "Engineering Graphics and Design",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 6,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 6,
+      "subjectName": "Professional Ethics",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 7,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 7,
+      "subjectName": "Constitution of India",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 8,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 8,
+      "subjectName": "Critical Thinking",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 9,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 9,
+      "subjectName": "Linear Algebra and Differential Equations",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 10,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 10,
+      "subjectName": "Quantum and Statistical Physics",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 11,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 11,
+      "subjectName": "English Communication",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 12,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 12,
+      "subjectName": "Basic Electrical and Electronics Engineering",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 13,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 13,
+      "subjectName": "Data Structures and Algorithms",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 14,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 14,
+      "subjectName": "Environmental Science",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 15,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 15,
+      "subjectName": "Digital Manufacturing Laboratory",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 16,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 16,
+      "subjectName": "Electrical and Electronics Workshop",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 17,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 17,
+      "subjectName": "Design Thinking",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 18,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 18,
+      "subjectName": "Probability and Statistics",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 19,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 19,
+      "subjectName": "Discrete Mathematics",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 20,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 20,
+      "subjectName": "Technical Communication",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 21,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 21,
+      "subjectName": "Management Accounting for Engineers",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 22,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 22,
+      "subjectName": "Digital Logic Design",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 23,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 23,
+      "subjectName": "Database Management Systems",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 24,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 24,
+      "subjectName": "Computer Networks",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 25,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 25,
+      "subjectName": "Data Extraction and Processing",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 26,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 26,
+      "subjectName": "Python Programming",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 27,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 27,
+      "subjectName": "Community Service",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 28,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 28,
+      "subjectName": "Complex Variables and Transforms",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 29,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 29,
+      "subjectName": "Computer Organization and Architecture",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 30,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 30,
+      "subjectName": "Design and Analysis of Algorithms",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 31,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 31,
+      "subjectName": "Principles of Economics and Management",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 32,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 32,
+      "subjectName": "Microprocessor and Microcontroller",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 33,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 33,
+      "subjectName": "Theoretical Computer Science",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 34,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 34,
+      "subjectName": "Web Programming",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 35,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 35,
+      "subjectName": "Software Engineering",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 36,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 36,
+      "subjectName": "Artificial Intelligence",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 37,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 37,
+      "subjectName": "Image and Video Processing",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 38,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 38,
+      "subjectName": "Operating Systems",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 39,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 39,
+      "subjectName": "Department Elective I",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 40,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 40,
+      "subjectName": "Open Elective I",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 41,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 41,
+      "subjectName": "Open Elective II",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 42,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 42,
+      "subjectName": "Cyber Security",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 43,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 43,
+      "subjectName": "Embedded Systems",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 44,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 44,
+      "subjectName": "Machine Learning",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 45,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 45,
+      "subjectName": "Department Elective II",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 46,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 46,
+      "subjectName": "Department Elective III",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 47,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 47,
+      "subjectName": "Open Elective III",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 48,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 48,
+      "subjectName": "Open Elective IV",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 49,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 49,
+      "subjectName": "Interpersonal Skills",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 50,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 50,
+      "subjectName": "Cloud Computing",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 51,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 51,
+      "subjectName": "Department Elective IV",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 52,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 52,
+      "subjectName": "Department Elective V",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 53,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 53,
+      "subjectName": "Department Elective VI",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 54,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 54,
+      "subjectName": "Open Elective V",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 55,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 55,
+      "subjectName": "Capstone Project",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 56,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 56,
+      "subjectName": "Technical Internship",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 57,
+      "batch": "2024-2028",
+      "programId": 1,
+      "programName": "BTech CSE",
+      "semesterId": 8,
+      "semesterName": "Semester 8",
+      "subjectId": 57,
+      "subjectName": "Project",
+      "credits": 10,
+      "totalHours": 100
+    },
+    {
+      "id": 58,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 1,
+      "subjectName": "Calculus",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 59,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 2,
+      "subjectName": "Physics",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 60,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 12,
+      "subjectName": "Basic Electrical and Electronics Engineering",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 61,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 58,
+      "subjectName": "Computational Thinking for Problem Solving",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 62,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 5,
+      "subjectName": "Engineering Graphics and Design",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 63,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 59,
+      "subjectName": "Essential Electronics Practices",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 64,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 60,
+      "subjectName": "Engineering Ethics",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 65,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 61,
+      "subjectName": "Indian Knowledge System",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 66,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 1,
+      "semesterName": "Semester 1",
+      "subjectId": 7,
+      "subjectName": "Constitution of India",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 67,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 9,
+      "subjectName": "Linear Algebra and Differential Equations",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 68,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 62,
+      "subjectName": "Quantum Physics",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 69,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 3,
+      "subjectName": "Elements of Biology",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 70,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 63,
+      "subjectName": "Product Realization",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 71,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 11,
+      "subjectName": "English Communication",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 72,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 64,
+      "subjectName": "Transforming Ideas to Innovation",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 73,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 14,
+      "subjectName": "Environmental Science",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 74,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 21,
+      "subjectName": "Management Accounting for Engineers",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 75,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 65,
+      "subjectName": "Object Oriented Programming",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 76,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 2,
+      "semesterName": "Semester 2",
+      "subjectId": 66,
+      "subjectName": "Object Oriented Programming Lab",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 77,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 20,
+      "subjectName": "Technical Communication",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 78,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 18,
+      "subjectName": "Probability and Statistics",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 79,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 67,
+      "subjectName": "Programming with Python",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 80,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 13,
+      "subjectName": "Data Structures and Algorithms",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 81,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 68,
+      "subjectName": "Data Structures and Algorithms Lab",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 82,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 24,
+      "subjectName": "Computer Networks",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 83,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 19,
+      "subjectName": "Discrete Mathematics",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 84,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 69,
+      "subjectName": "Digital Circuits and Computer Architecture",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 85,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 27,
+      "subjectName": "Community Service",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 86,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 3,
+      "semesterName": "Semester 3",
+      "subjectId": 70,
+      "subjectName": "Program Elective-I",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 87,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 23,
+      "subjectName": "Database Management Systems",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 88,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 71,
+      "subjectName": "Database Management Systems Lab",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 89,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 30,
+      "subjectName": "Design and Analysis of Algorithms",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 90,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 72,
+      "subjectName": "Artificial Intelligence Algorithms",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 91,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 73,
+      "subjectName": "Applied Machine Learning",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 92,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 49,
+      "subjectName": "Interpersonal Skills",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 93,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 74,
+      "subjectName": "Website Designing and Development",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 94,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 75,
+      "subjectName": "Design Experience I",
+      "credits": 1,
+      "totalHours": 15
+    },
+    {
+      "id": 95,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 4,
+      "semesterName": "Semester 4",
+      "subjectId": 76,
+      "subjectName": "Program Elective-II",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 96,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 35,
+      "subjectName": "Software Engineering",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 97,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 38,
+      "subjectName": "Operating Systems",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 98,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 77,
+      "subjectName": "Principles of Data, Signal, and Image Analysis",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 99,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 78,
+      "subjectName": "Program Elective-III",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 100,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 79,
+      "subjectName": "Open Elective-I",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 101,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 80,
+      "subjectName": "Open Elective-II",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 102,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 81,
+      "subjectName": "Design Experience II",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 103,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 5,
+      "semesterName": "Semester 5",
+      "subjectId": 82,
+      "subjectName": "Career Guidance",
+      "credits": 0,
+      "totalHours": 20
+    },
+    {
+      "id": 104,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 31,
+      "subjectName": "Principles of Economics and Management",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 105,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 83,
+      "subjectName": "Data Wrangling Fundamentals",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 106,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 84,
+      "subjectName": "Data Visualization",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 107,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 85,
+      "subjectName": "Program Elective-IV",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 108,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 86,
+      "subjectName": "Program Elective-V",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 109,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 87,
+      "subjectName": "Open Elective-III",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 110,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 88,
+      "subjectName": "Open Elective-IV",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 111,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 6,
+      "semesterName": "Semester 6",
+      "subjectId": 89,
+      "subjectName": "Design Experience III",
+      "credits": 2,
+      "totalHours": 30
+    },
+    {
+      "id": 112,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 90,
+      "subjectName": "Deep Learning: Fundamentals and Applications",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 113,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 91,
+      "subjectName": "Big Data Analytics for Engineers",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 114,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 92,
+      "subjectName": "Program Elective-VI",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 115,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 93,
+      "subjectName": "Open Elective-V",
+      "credits": 3,
+      "totalHours": 45
+    },
+    {
+      "id": 116,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 7,
+      "semesterName": "Semester 7",
+      "subjectId": 55,
+      "subjectName": "Capstone Project",
+      "credits": 4,
+      "totalHours": 60
+    },
+    {
+      "id": 117,
+      "batch": "2025-2029",
+      "programId": 2,
+      "programName": "BTech CSE Data Science",
+      "semesterId": 8,
+      "semesterName": "Semester 8",
+      "subjectId": 57,
+      "subjectName": "Project",
+      "credits": 10,
+      "totalHours": 100
+    }
+  ],
+  "users": [
+    {
+      "id": 103,
+      "fullName": "Karshikalam Vamshi",
+      "email": "karshikalamvamshi48@gmail.com",
+      "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+      "rollNo": "A048",
+      "sapId": "7057240148",
+      "createdAt": "2026-09-22T04:46:54.954Z"
+    }
+  ],
+  "studentProfiles": {
+    "103": {
+      "batch": "2024-2028",
+      "course": "B.Tech CSE (Data Science)",
+      "semester": 1
+    }
+  },
+  "attendanceRecords": {
+    "103_2024-2028_B.Tech CSE (Data Science)_1": {
+      "attendancePayload": [
+        {
+          "subjectId": "1",
+          "subjectName": "Calculus",
+          "totalSemesterClasses": 60,
+          "attended": 45,
+          "conducted": 50
+        }
+      ],
+      "totalAttended": 45,
+      "totalConducted": 50,
+      "subjectAttendanceSummary": "Calculus: Attended 45, Conducted 50"
+    },
+    "103_2024-2028_BTech CSE_1": {
+      "attendancePayload": [
+        {
+          "subjectId": "1",
+          "subjectName": "Calculus",
+          "totalSemesterClasses": 60,
+          "attended": 40,
+          "conducted": 60
+        },
+        {
+          "subjectId": "2",
+          "subjectName": "Physics",
+          "totalSemesterClasses": 60,
+          "attended": 50,
+          "conducted": 60
+        },
+        {
+          "subjectId": "3",
+          "subjectName": "Elements of Biology",
+          "totalSemesterClasses": 45,
+          "attended": 27,
+          "conducted": 45
+        },
+        {
+          "subjectId": "4",
+          "subjectName": "Programming for Problem Solving",
+          "totalSemesterClasses": 60,
+          "attended": 56,
+          "conducted": 60
+        },
+        {
+          "subjectId": "5",
+          "subjectName": "Engineering Graphics and Design",
+          "totalSemesterClasses": 45,
+          "attended": 34,
+          "conducted": 45
+        },
+        {
+          "subjectId": "6",
+          "subjectName": "Professional Ethics",
+          "totalSemesterClasses": 15,
+          "attended": 15,
+          "conducted": 15
+        },
+        {
+          "subjectId": "7",
+          "subjectName": "Constitution of India",
+          "totalSemesterClasses": 20,
+          "attended": 20,
+          "conducted": 20
+        },
+        {
+          "subjectId": "8",
+          "subjectName": "Critical Thinking",
+          "totalSemesterClasses": 20,
+          "attended": 20,
+          "conducted": 20
+        }
+      ],
+      "totalAttended": 262,
+      "totalConducted": 325,
+      "subjectAttendanceSummary": "Calculus: Attended 40, Conducted 60 | Physics: Attended 50, Conducted 60 | Elements of Biology: Attended 27, Conducted 45 | Programming for Problem Solving: Attended 56, Conducted 60 | Engineering Graphics and Design: Attended 34, Conducted 45 | Professional Ethics: Attended 15, Conducted 15 | Constitution of India: Attended 20, Conducted 20 | Critical Thinking: Attended 20, Conducted 20"
+    }
+  },
+  "adminUsers": [
+    {
+      "id": 1,
+      "fullName": "Default Admin",
+      "email": "admin@attendance.local",
+      "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+      "isActive": 1,
+      "isDefault": true,
+      "createdAt": "2026-09-30T07:34:50.007Z"
+    }
+  ],
+  "facultyUsers": [
+    {
+      "id": 1,
+      "fullName": "Prof. S. Sharma",
+      "email": "faculty@attendance.local",
+      "passwordHash": "27041f5856c7387a997252694afb048d1aa939228ffcdbd6285b979b8da20e7a",
+      "department": "Computer Science & Engineering",
+      "isActive": 1,
+      "createdAt": "2026-09-30T07:34:50.007Z"
+    }
+  ]
+}
